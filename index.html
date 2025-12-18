@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amit Verma | Sales & Marketing Strategist Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <!-- Chosen Palette: Corporate Slate & Growth Emerald -->
+    <!-- Application Structure Plan:
+         1. Hero Section: Introduces Amit Verma as an MBA grad with a proven sales track record.
+         2. Performance Dashboard: "Show, Don't Tell". Visualizes the ₹18.2L+ total revenue generated across 3 roles (K3M, PlanetSpark, HappEquity).
+         3. Professional Experience: Chronological details, highlighting the K3M road safety product role and previous internships.
+         4. Education & Certifications: IMT Nagpur details + McKinsey Forward Program.
+         5. Academic Projects: Detailed breakdown of the MBA projects (Finance Veda, RangAroma).
+    -->
+    <!-- Visualization & Content Choices:
+         - Revenue Breakdown (Doughnut): Compares contribution from K3M (current) vs internships.
+         - K3M Growth Trajectory (Line): Simulates the ramp-up to the ₹13L figure from Sept to Dec.
+         - Skills Radar: Balances "Sales/Negotiation" with "Financial Modeling/Analysis".
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span class="h-8 w-8 bg-slate-900 text-white rounded-md flex items-center justify-center font-bold text-sm">AV</span>
+                    <span class="font-bold text-lg tracking-tight">Amit Verma</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#dashboard" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Sales Dashboard</a>
+                    <a href="#experience" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
+                    <a href="#skills" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills & Certs</a>
+                    <a href="#projects" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
+                </div>
+                <!-- Mobile menu toggle -->
+                <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-slate-500 hover:text-slate-900 focus:outline-none">
+                    <span class="text-2xl">☰</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#dashboard" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Dashboard</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Experience</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 md:pt-40 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-block mb-4 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold tracking-wide uppercase">MBA (Marketing & Finance) • Sales Professional</div>
+        <h1 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
+            Driving Revenue Through
+            <span class="text-emerald-600 relative inline-block">
+                Strategic Sales
+                <span class="absolute bottom-0 left-0 w-full h-2 bg-emerald-200 opacity-30 -z-10"></span>
+            </span>
+            & Analysis
+        </h1>
+        <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-500">
+            Bridging the gap between financial analysis and on-ground sales execution. 
+            Currently driving distribution for 3M Road Safety products.
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+            <a href="mailto:av008380@gmail.com" class="px-8 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-700 transition shadow-lg font-medium">Contact Me</a>
+            <a href="#experience" class="px-8 py-3 bg-white text-slate-900 border border-slate-300 rounded-lg hover:bg-slate-50 transition font-medium">View Work History</a>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-200 pt-8">
+            <div>
+                <div class="text-3xl font-bold text-slate-900">₹18.2L+</div>
+                <div class="text-sm text-slate-500 uppercase tracking-wide">Total Revenue Generated</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-slate-900">32</div>
+                <div class="text-sm text-slate-500 uppercase tracking-wide">Demat Accounts Opened</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-slate-900">MBA</div>
+                <div class="text-sm text-slate-500 uppercase tracking-wide">IMT Nagpur (2023-25)</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-slate-900">3M</div>
+                <div class="text-sm text-slate-500 uppercase tracking-wide">Product Expertise</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION: LIVE DASHBOARD -->
+    <section id="dashboard" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Performance Dashboard</h2>
+                <p class="text-slate-600 text-lg leading-relaxed max-w-3xl">
+                    A quantitative look at my sales performance across my career timeline. 
+                    From financial products (Mutual Funds/Insurance) to EdTech, and now industrial safety solutions at K3M LLP.
+                </p>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- KPI 1 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
+                    <div class="text-slate-500 text-sm font-medium uppercase mb-1">Current Sales (K3M LLP)</div>
+                    <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
+                        <span>₹13,00,000</span>
+                        <span class="text-emerald-600 text-sm font-semibold mb-1">▲ Active</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Driven by 3M Retro Reflective Tape sales (Sept '25 - Present)</p>
+                </div>
+                <!-- KPI 2 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
+                    <div class="text-slate-500 text-sm font-medium uppercase mb-1">Internship Revenue</div>
+                    <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
+                        <span>₹5,20,000</span>
+                        <span class="text-slate-500 text-sm font-semibold mb-1">● Completed</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Combined: PlanetSpark (3.2L) + HappEquity (2.0L)</p>
+                </div>
+                <!-- KPI 3 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
+                    <div class="text-slate-500 text-sm font-medium uppercase mb-1">Lead Conversion Focus</div>
+                    <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
+                        <span>B2B & B2C</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Experience in both Commercial (Fleets) and Retail (EdTech/Finance)</p>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Chart 1: Revenue Contribution -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Revenue Contribution by Role</h3>
+                    <p class="text-sm text-slate-500 mb-6">Breakdown of the total ₹18.2L generated revenue.</p>
+                    <div class="chart-container">
+                        <canvas id="revenuePieChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: K3M Monthly Performance (Simulation) -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">K3M LLP: Sales Trajectory</h3>
+                    <p class="text-sm text-slate-500 mb-6">Monthly cumulative sales of 3M Retro Reflective Tapes (Sept - Dec 2025).</p>
+                    <div class="chart-container">
+                        <canvas id="k3mTrendChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: EXPERIENCE -->
+    <section id="experience" class="py-16 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-10 text-center">Professional Experience</h2>
+
+            <div class="relative border-l-2 border-emerald-200 space-y-12 ml-4">
+                
+                <!-- Role 1: K3M (Current) -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-emerald-500 border-2 border-white"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Sales Associate (Road Safety Division)</h3>
+                        <span class="text-sm font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">Sep 2025 - Present</span>
+                    </div>
+                    <div class="text-lg text-slate-700 font-medium mb-4">K3M LLP • Manufacturing & Distribution</div>
+                    <p class="text-slate-600 mb-4">
+                        Spearheading sales for 3M retro-reflective tapes used on commercial vehicles to enhance road safety and compliance.
+                    </p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
+                        <li><strong>Revenue Impact:</strong> Achieved a total sales volume of <strong>₹13 Lakhs</strong> within 4 months.</li>
+                        <li><strong>B2B Sales:</strong> Established relationships with commercial fleet operators and vehicle body manufacturers.</li>
+                        <li><strong>Product Knowledge:</strong> Specialized in technical specifications of 3M safety products for regulatory compliance.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2: PlanetSpark -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-400 border-2 border-white"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Business Development Trainee</h3>
+                        <span class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">June 2025 - July 2025</span>
+                    </div>
+                    <div class="text-lg text-slate-700 font-medium mb-4">PlanetSpark • Gurugram</div>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
+                        <li><strong>Sales Achievement:</strong> Closed sales worth <strong>₹3,20,000</strong> by effectively guiding parents through the course enrollment funnel.</li>
+                        <li><strong>CRM Management:</strong> Maintained lead status and pipeline hygiene to ensure zero lead leakage.</li>
+                        <li><strong>Lead Nurturing:</strong> Utilized cold calling and WhatsApp marketing to engage prospects and expand the customer base.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 3: HappEquity -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300 border-2 border-white"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Management Intern</h3>
+                        <span class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">Apr 2024 - May 2024</span>
+                    </div>
+                    <div class="text-lg text-slate-700 font-medium mb-4">HappEquity Investments & Finance • Delhi</div>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
+                        <li><strong>Sales Target:</strong> Exceeded targets by closing deals worth <strong>₹2,00,000</strong> in mutual funds and insurance.</li>
+                        <li><strong>Customer Acquisition:</strong> Opened <strong>32 Demat accounts</strong> with Angel One through referrals and direct sales.</li>
+                        <li><strong>Digital Marketing:</strong> Increased social media engagement by 16% through content creation (blogs/videos).</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: EDUCATION & CERTIFICATIONS -->
+    <section id="skills" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Education -->
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6">Education</h2>
+                    <div class="space-y-6">
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-lg text-slate-900">MBA (Marketing & Finance)</h3>
+                            <p class="text-emerald-600 font-medium">IMT Nagpur • 2023 - 2025</p>
+                            <p class="text-slate-600 mt-2">Score: 72.00%</p>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-lg text-slate-900">B.Com (General)</h3>
+                            <p class="text-emerald-600 font-medium">MLNCE (Delhi University) • 2017 - 2020</p>
+                            <p class="text-slate-600 mt-2">Score: 63.48%</p>
+                        </div>
+                    </div>
+
+                    <!-- Skills Chart -->
+                    <h2 class="text-2xl font-bold text-slate-900 mt-10 mb-6">Key Competencies</h2>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6">Certifications</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Premium Cert -->
+                        <div class="bg-slate-900 text-white p-5 rounded-xl col-span-1 sm:col-span-2 shadow-md flex items-center justify-between">
+                            <div>
+                                <h3 class="font-bold text-lg">McKinsey Forward Program</h3>
+                                <p class="text-slate-300 text-sm mt-1">Foundational Skills for the Future of Work</p>
+                            </div>
+                            <span class="text-2xl">✨</span>
+                        </div>
+
+                        <!-- Standard Certs -->
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                            <h3 class="font-bold text-slate-800">Financial Modeling</h3>
+                            <p class="text-slate-500 text-sm">Finance Veda</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                            <h3 class="font-bold text-slate-800">Equity Research</h3>
+                            <p class="text-slate-500 text-sm">Finance Veda</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                            <h3 class="font-bold text-slate-800">Digital Marketing</h3>
+                            <p class="text-slate-500 text-sm">Great Learning</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                            <h3 class="font-bold text-slate-800">Power BI & Excel</h3>
+                            <p class="text-slate-500 text-sm">Simplilearn / Great Learning</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                            <h3 class="font-bold text-slate-800">Lean Six Sigma</h3>
+                            <p class="text-slate-500 text-sm">Foundation Level</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                            <h3 class="font-bold text-slate-800">HubSpot & Salesforce</h3>
+                            <p class="text-slate-500 text-sm">CRM Essentials</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROJECTS -->
+    <section id="projects" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-10 text-center">Academic & Live Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
+                    <div class="h-10 w-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4 text-xl">📊</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Equity Research Analysis</h3>
+                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">Finance Veda</p>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Conducted deep-dive financial analysis of companies in the alcohol industry. Performed ratio analysis, SWOT, and built financial models to determine intrinsic share value.
+                    </p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
+                    <div class="h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4 text-xl">🚀</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">"RangAroma" Launch Plan</h3>
+                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">IMT Nagpur • Marketing</p>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Developed a GTM strategy for Elica Kitchen Chimneys. Proposed "RangAroma" product line, social media influencer campaigns, and bundled pricing models for Indian consumers.
+                    </p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
+                    <div class="h-10 w-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 mb-4 text-xl">📄</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">TDS Refund Solution Strategy</h3>
+                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">CredFill Pvt. Ltd.</p>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Created a marketing budget allocation plan across online/offline channels. Optimized CPC and utilized SEO to boost website reach by 8% for instant tax refund solutions.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold text-white mb-6">Let's Connect</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-8 mb-8">
+                <a href="mailto:av008380@gmail.com" class="hover:text-emerald-400 transition flex items-center justify-center gap-2">
+                    <span>✉</span> av008380@gmail.com
+                </a>
+                <a href="tel:9838714622" class="hover:text-emerald-400 transition flex items-center justify-center gap-2">
+                    <span>📞</span> +91 9838714622
+                </a>
+                <a href="http://www.linkedin.com/in/amitverma" target="_blank" class="hover:text-emerald-400 transition flex items-center justify-center gap-2">
+                    <span>🔗</span> LinkedIn Profile
+                </a>
+            </div>
+            <p class="text-sm">© 2025 Amit Verma. Designed with Data-Driven Precision.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // --- CHART DATA SETUP ---
+
+        // 1. Revenue Contribution (Doughnut)
+        const revenueData = {
+            labels: ['K3M LLP (Current)', 'PlanetSpark', 'HappEquity'],
+            datasets: [{
+                data: [1300000, 320000, 200000],
+                backgroundColor: [
+                    '#059669', // Emerald 600 (Main)
+                    '#94a3b8', // Slate 400
+                    '#cbd5e1'  // Slate 300
+                ],
+                borderWidth: 0,
+                hoverOffset: 4
+            }]
+        };
+
+        // 2. K3M Sales Trend (Line - Simulated Ramp Up)
+        const k3mTrendData = {
+            labels: ['Sept', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Cumulative Revenue (₹ Lakhs)',
+                data: [2.5, 5.5, 9.0, 13.0], // Simulating growth to 13L
+                borderColor: '#059669', // Emerald 600
+                backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 6,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#059669',
+                pointBorderWidth: 2
+            }]
+        };
+
+        // 3. Skills Radar
+        const skillsData = {
+            labels: ['Sales & Negotiation', 'Financial Modeling', 'CRM (HubSpot/SF)', 'Data Analysis (Excel/BI)', 'Digital Marketing', 'Strategic Planning'],
+            datasets: [{
+                label: 'Proficiency',
+                data: [9, 8, 7, 8, 7, 8],
+                backgroundColor: 'rgba(5, 150, 105, 0.2)',
+                borderColor: '#059669',
+                pointBackgroundColor: '#059669',
+                pointHoverBorderColor: '#059669'
+            }]
+        };
+
+        // --- CHART RENDERING ---
+
+        // Render Pie Chart
+        const ctxPie = document.getElementById('revenuePieChart').getContext('2d');
+        new Chart(ctxPie, {
+            type: 'doughnut',
+            data: revenueData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { usePointStyle: true } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let value = context.raw;
+                                return ' ₹' + value.toLocaleString('en-IN');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Render Line Chart
+        const ctxLine = document.getElementById('k3mTrendChart').getContext('2d');
+        new Chart(ctxLine, {
+            type: 'line',
+            data: k3mTrendData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ' ₹' + context.raw + ' Lakhs';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#f1f5f9' },
+                        title: { display: true, text: 'Revenue (Lakhs)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Render Radar Chart
+        const ctxRadar = document.getElementById('skillsChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: skillsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { size: 11, family: 'Inter' } },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
