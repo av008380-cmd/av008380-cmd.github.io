@@ -1,510 +1,681 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amit Verma | Sales & Marketing Strategist Portfolio</title>
+    <title>Forward Program: The Complete Encyclopedia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        
-        /* Custom Chart Container Styling */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-    <!-- Chosen Palette: Corporate Slate & Growth Emerald -->
-    <!-- Application Structure Plan:
-         1. Hero Section: Introduces Amit Verma as an MBA grad with a proven sales track record.
-         2. Performance Dashboard: "Show, Don't Tell". Visualizes the ₹18.2L+ total revenue generated across 3 roles (K3M, PlanetSpark, HappEquity).
-         3. Professional Experience: Chronological details, highlighting the K3M road safety product role and previous internships.
-         4. Education & Certifications: IMT Nagpur details + McKinsey Forward Program.
-         5. Academic Projects: Detailed breakdown of the MBA projects (Finance Veda, RangAroma).
-    -->
-    <!-- Visualization & Content Choices:
-         - Revenue Breakdown (Doughnut): Compares contribution from K3M (current) vs internships.
-         - K3M Growth Trajectory (Line): Simulates the ramp-up to the ₹13L figure from Sept to Dec.
-         - Skills Radar: Balances "Sales/Negotiation" with "Financial Modeling/Analysis".
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <span class="h-8 w-8 bg-slate-900 text-white rounded-md flex items-center justify-center font-bold text-sm">AV</span>
-                    <span class="font-bold text-lg tracking-tight">Amit Verma</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#dashboard" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Sales Dashboard</a>
-                    <a href="#experience" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
-                    <a href="#skills" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills & Certs</a>
-                    <a href="#projects" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
-                </div>
-                <!-- Mobile menu toggle -->
-                <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-slate-500 hover:text-slate-900 focus:outline-none">
-                    <span class="text-2xl">☰</span>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#dashboard" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Dashboard</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Experience</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Skills</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Projects</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="pt-32 pb-16 md:pt-40 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="inline-block mb-4 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold tracking-wide uppercase">MBA (Marketing & Finance) • Sales Professional</div>
-        <h1 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-            Driving Revenue Through
-            <span class="text-emerald-600 relative inline-block">
-                Strategic Sales
-                <span class="absolute bottom-0 left-0 w-full h-2 bg-emerald-200 opacity-30 -z-10"></span>
-            </span>
-            & Analysis
-        </h1>
-        <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-500">
-            Bridging the gap between financial analysis and on-ground sales execution. 
-            Currently driving distribution for 3M Road Safety products.
-        </p>
-        <div class="mt-8 flex justify-center gap-4">
-            <a href="mailto:av008380@gmail.com" class="px-8 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-700 transition shadow-lg font-medium">Contact Me</a>
-            <a href="#experience" class="px-8 py-3 bg-white text-slate-900 border border-slate-300 rounded-lg hover:bg-slate-50 transition font-medium">View Work History</a>
-        </div>
-        
-        <!-- Quick Stats -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-200 pt-8">
-            <div>
-                <div class="text-3xl font-bold text-slate-900">₹18.2L+</div>
-                <div class="text-sm text-slate-500 uppercase tracking-wide">Total Revenue Generated</div>
-            </div>
-            <div>
-                <div class="text-3xl font-bold text-slate-900">32</div>
-                <div class="text-sm text-slate-500 uppercase tracking-wide">Demat Accounts Opened</div>
-            </div>
-            <div>
-                <div class="text-3xl font-bold text-slate-900">MBA</div>
-                <div class="text-sm text-slate-500 uppercase tracking-wide">IMT Nagpur (2023-25)</div>
-            </div>
-            <div>
-                <div class="text-3xl font-bold text-slate-900">3M</div>
-                <div class="text-sm text-slate-500 uppercase tracking-wide">Product Expertise</div>
-            </div>
-        </div>
-    </header>
-
-    <!-- SECTION: LIVE DASHBOARD -->
-    <section id="dashboard" class="py-16 bg-white border-y border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Performance Dashboard</h2>
-                <p class="text-slate-600 text-lg leading-relaxed max-w-3xl">
-                    A quantitative look at my sales performance across my career timeline. 
-                    From financial products (Mutual Funds/Insurance) to EdTech, and now industrial safety solutions at K3M LLP.
-                </p>
-            </div>
-
-            <!-- KPI Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <!-- KPI 1 -->
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
-                    <div class="text-slate-500 text-sm font-medium uppercase mb-1">Current Sales (K3M LLP)</div>
-                    <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
-                        <span>₹13,00,000</span>
-                        <span class="text-emerald-600 text-sm font-semibold mb-1">▲ Active</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-2">Driven by 3M Retro Reflective Tape sales (Sept '25 - Present)</p>
-                </div>
-                <!-- KPI 2 -->
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
-                    <div class="text-slate-500 text-sm font-medium uppercase mb-1">Internship Revenue</div>
-                    <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
-                        <span>₹5,20,000</span>
-                        <span class="text-slate-500 text-sm font-semibold mb-1">● Completed</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-2">Combined: PlanetSpark (3.2L) + HappEquity (2.0L)</p>
-                </div>
-                <!-- KPI 3 -->
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
-                    <div class="text-slate-500 text-sm font-medium uppercase mb-1">Lead Conversion Focus</div>
-                    <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
-                        <span>B2B & B2C</span>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-2">Experience in both Commercial (Fleets) and Retail (EdTech/Finance)</p>
-                </div>
-            </div>
-
-            <!-- Charts Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- Chart 1: Revenue Contribution -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Revenue Contribution by Role</h3>
-                    <p class="text-sm text-slate-500 mb-6">Breakdown of the total ₹18.2L generated revenue.</p>
-                    <div class="chart-container">
-                        <canvas id="revenuePieChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Chart 2: K3M Monthly Performance (Simulation) -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">K3M LLP: Sales Trajectory</h3>
-                    <p class="text-sm text-slate-500 mb-6">Monthly cumulative sales of 3M Retro Reflective Tapes (Sept - Dec 2025).</p>
-                    <div class="chart-container">
-                        <canvas id="k3mTrendChart"></canvas>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: EXPERIENCE -->
-    <section id="experience" class="py-16 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-10 text-center">Professional Experience</h2>
-
-            <div class="relative border-l-2 border-emerald-200 space-y-12 ml-4">
-                
-                <!-- Role 1: K3M (Current) -->
-                <div class="relative pl-8">
-                    <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-emerald-500 border-2 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-slate-900">Sales Associate (Road Safety Division)</h3>
-                        <span class="text-sm font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">Sep 2025 - Present</span>
-                    </div>
-                    <div class="text-lg text-slate-700 font-medium mb-4">K3M LLP • Manufacturing & Distribution</div>
-                    <p class="text-slate-600 mb-4">
-                        Spearheading sales for 3M retro-reflective tapes used on commercial vehicles to enhance road safety and compliance.
-                    </p>
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
-                        <li><strong>Revenue Impact:</strong> Achieved a total sales volume of <strong>₹13 Lakhs</strong> within 4 months.</li>
-                        <li><strong>B2B Sales:</strong> Established relationships with commercial fleet operators and vehicle body manufacturers.</li>
-                        <li><strong>Product Knowledge:</strong> Specialized in technical specifications of 3M safety products for regulatory compliance.</li>
-                    </ul>
-                </div>
-
-                <!-- Role 2: PlanetSpark -->
-                <div class="relative pl-8">
-                    <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-400 border-2 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-slate-900">Business Development Trainee</h3>
-                        <span class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">June 2025 - July 2025</span>
-                    </div>
-                    <div class="text-lg text-slate-700 font-medium mb-4">PlanetSpark • Gurugram</div>
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
-                        <li><strong>Sales Achievement:</strong> Closed sales worth <strong>₹3,20,000</strong> by effectively guiding parents through the course enrollment funnel.</li>
-                        <li><strong>CRM Management:</strong> Maintained lead status and pipeline hygiene to ensure zero lead leakage.</li>
-                        <li><strong>Lead Nurturing:</strong> Utilized cold calling and WhatsApp marketing to engage prospects and expand the customer base.</li>
-                    </ul>
-                </div>
-
-                <!-- Role 3: HappEquity -->
-                <div class="relative pl-8">
-                    <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300 border-2 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-slate-900">Management Intern</h3>
-                        <span class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">Apr 2024 - May 2024</span>
-                    </div>
-                    <div class="text-lg text-slate-700 font-medium mb-4">HappEquity Investments & Finance • Delhi</div>
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
-                        <li><strong>Sales Target:</strong> Exceeded targets by closing deals worth <strong>₹2,00,000</strong> in mutual funds and insurance.</li>
-                        <li><strong>Customer Acquisition:</strong> Opened <strong>32 Demat accounts</strong> with Angel One through referrals and direct sales.</li>
-                        <li><strong>Digital Marketing:</strong> Increased social media engagement by 16% through content creation (blogs/videos).</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: EDUCATION & CERTIFICATIONS -->
-    <section id="skills" class="py-16 bg-white border-y border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                
-                <!-- Education -->
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6">Education</h2>
-                    <div class="space-y-6">
-                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
-                            <h3 class="font-bold text-lg text-slate-900">MBA (Marketing & Finance)</h3>
-                            <p class="text-emerald-600 font-medium">IMT Nagpur • 2023 - 2025</p>
-                            <p class="text-slate-600 mt-2">Score: 72.00%</p>
-                        </div>
-                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
-                            <h3 class="font-bold text-lg text-slate-900">B.Com (General)</h3>
-                            <p class="text-emerald-600 font-medium">MLNCE (Delhi University) • 2017 - 2020</p>
-                            <p class="text-slate-600 mt-2">Score: 63.48%</p>
-                        </div>
-                    </div>
-
-                    <!-- Skills Chart -->
-                    <h2 class="text-2xl font-bold text-slate-900 mt-10 mb-6">Key Competencies</h2>
-                    <div class="chart-container" style="height: 300px;">
-                        <canvas id="skillsChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Certifications -->
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6">Certifications</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        
-                        <!-- Premium Cert -->
-                        <div class="bg-slate-900 text-white p-5 rounded-xl col-span-1 sm:col-span-2 shadow-md flex items-center justify-between">
-                            <div>
-                                <h3 class="font-bold text-lg">McKinsey Forward Program</h3>
-                                <p class="text-slate-300 text-sm mt-1">Foundational Skills for the Future of Work</p>
-                            </div>
-                            <span class="text-2xl">✨</span>
-                        </div>
-
-                        <!-- Standard Certs -->
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Financial Modeling</h3>
-                            <p class="text-slate-500 text-sm">Finance Veda</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Equity Research</h3>
-                            <p class="text-slate-500 text-sm">Finance Veda</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Digital Marketing</h3>
-                            <p class="text-slate-500 text-sm">Great Learning</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Power BI & Excel</h3>
-                            <p class="text-slate-500 text-sm">Simplilearn / Great Learning</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Lean Six Sigma</h3>
-                            <p class="text-slate-500 text-sm">Foundation Level</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">HubSpot & Salesforce</h3>
-                            <p class="text-slate-500 text-sm">CRM Essentials</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: PROJECTS -->
-    <section id="projects" class="py-16 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-10 text-center">Academic & Live Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project 1 -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
-                    <div class="h-10 w-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4 text-xl">📊</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Equity Research Analysis</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">Finance Veda</p>
-                    <p class="text-slate-600 text-sm mb-4">
-                        Conducted deep-dive financial analysis of companies in the alcohol industry. Performed ratio analysis, SWOT, and built financial models to determine intrinsic share value.
-                    </p>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
-                    <div class="h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4 text-xl">🚀</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">"RangAroma" Launch Plan</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">IMT Nagpur • Marketing</p>
-                    <p class="text-slate-600 text-sm mb-4">
-                        Developed a GTM strategy for Elica Kitchen Chimneys. Proposed "RangAroma" product line, social media influencer campaigns, and bundled pricing models for Indian consumers.
-                    </p>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
-                    <div class="h-10 w-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 mb-4 text-xl">📄</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">TDS Refund Solution Strategy</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">CredFill Pvt. Ltd.</p>
-                    <p class="text-slate-600 text-sm mb-4">
-                        Created a marketing budget allocation plan across online/offline channels. Optimized CPC and utilized SEO to boost website reach by 8% for instant tax refund solutions.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl font-bold text-white mb-6">Let's Connect</h2>
-            <div class="flex flex-col md:flex-row justify-center gap-8 mb-8">
-                <a href="mailto:av008380@gmail.com" class="hover:text-emerald-400 transition flex items-center justify-center gap-2">
-                    <span>✉</span> av008380@gmail.com
-                </a>
-                <a href="tel:9838714622" class="hover:text-emerald-400 transition flex items-center justify-center gap-2">
-                    <span>📞</span> +91 9838714622
-                </a>
-                <a href="http://www.linkedin.com/in/amitverma" target="_blank" class="hover:text-emerald-400 transition flex items-center justify-center gap-2">
-                    <span>🔗</span> LinkedIn Profile
-                </a>
-            </div>
-            <p class="text-sm">© 2025 Amit Verma. Designed with Data-Driven Precision.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript for Interactivity -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
-        // --- CHART DATA SETUP ---
-
-        // 1. Revenue Contribution (Doughnut)
-        const revenueData = {
-            labels: ['K3M LLP (Current)', 'PlanetSpark', 'HappEquity'],
-            datasets: [{
-                data: [1300000, 320000, 200000],
-                backgroundColor: [
-                    '#059669', // Emerald 600 (Main)
-                    '#94a3b8', // Slate 400
-                    '#cbd5e1'  // Slate 300
-                ],
-                borderWidth: 0,
-                hoverOffset: 4
-            }]
-        };
-
-        // 2. K3M Sales Trend (Line - Simulated Ramp Up)
-        const k3mTrendData = {
-            labels: ['Sept', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'Cumulative Revenue (₹ Lakhs)',
-                data: [2.5, 5.5, 9.0, 13.0], // Simulating growth to 13L
-                borderColor: '#059669', // Emerald 600
-                backgroundColor: 'rgba(5, 150, 105, 0.1)',
-                fill: true,
-                tension: 0.3,
-                pointRadius: 6,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#059669',
-                pointBorderWidth: 2
-            }]
-        };
-
-        // 3. Skills Radar
-        const skillsData = {
-            labels: ['Sales & Negotiation', 'Financial Modeling', 'CRM (HubSpot/SF)', 'Data Analysis (Excel/BI)', 'Digital Marketing', 'Strategic Planning'],
-            datasets: [{
-                label: 'Proficiency',
-                data: [9, 8, 7, 8, 7, 8],
-                backgroundColor: 'rgba(5, 150, 105, 0.2)',
-                borderColor: '#059669',
-                pointBackgroundColor: '#059669',
-                pointHoverBorderColor: '#059669'
-            }]
-        };
-
-        // --- CHART RENDERING ---
-
-        // Render Pie Chart
-        const ctxPie = document.getElementById('revenuePieChart').getContext('2d');
-        new Chart(ctxPie, {
-            type: 'doughnut',
-            data: revenueData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'right', labels: { usePointStyle: true } },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let value = context.raw;
-                                return ' ₹' + value.toLocaleString('en-IN');
-                            }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mck: {
+                            blue: '#051c2c',
+                            light: '#28a0d4',
+                            accent: '#0065a3',
+                            gray: '#f2f2f2'
                         }
-                    }
-                }
-            }
-        });
-
-        // Render Line Chart
-        const ctxLine = document.getElementById('k3mTrendChart').getContext('2d');
-        new Chart(ctxLine, {
-            type: 'line',
-            data: k3mTrendData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return ' ₹' + context.raw + ' Lakhs';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: '#f1f5f9' },
-                        title: { display: true, text: 'Revenue (Lakhs)' }
                     },
-                    x: {
-                        grid: { display: false }
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
                     }
                 }
             }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+
+        /* Animation Utilities */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .tab-btn.active { 
+            background-color: #e0f2fe; 
+            color: #0369a1; 
+            border-right: 4px solid #0284c7;
+        }
+
+        .accordion-content { transition: max-height 0.3s ease-out; max-height: 0; overflow: hidden; }
+        .accordion-content.open { max-height: 1000px; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-slate-800">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 bg-mck-blue text-white flex flex-col flex-none hidden md:flex z-20 shadow-xl">
+        <div class="p-6 border-b border-white/10">
+            <h1 class="text-2xl font-serif italic font-bold">Forward.</h1>
+            <p class="text-xs text-blue-300 uppercase tracking-widest mt-1">Encyclopedia Edition</p>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4 space-y-1">
+            <button onclick="nav('overview')" id="nav-overview" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm active">
+                <i class="fa-solid fa-home w-5"></i> Overview
+            </button>
+            
+            <div class="px-6 py-2 text-xs font-bold text-slate-500 uppercase mt-4">Core Modules</div>
+            
+            <button onclick="nav('adaptability')" id="nav-adaptability" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-battery-half w-5"></i> Adaptability
+            </button>
+            <button onclick="nav('problem')" id="nav-problem" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-chess w-5"></i> Problem Solving
+            </button>
+            <button onclick="nav('communication')" id="nav-communication" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-comments w-5"></i> Communication
+            </button>
+            <button onclick="nav('relationships')" id="nav-relationships" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-users w-5"></i> Relationships
+            </button>
+            <button onclick="nav('digital')" id="nav-digital" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-laptop-code w-5"></i> Digital Toolkit
+            </button>
+
+            <div class="px-6 py-2 text-xs font-bold text-slate-500 uppercase mt-4">Application</div>
+
+            <button onclick="nav('workbook')" id="nav-workbook" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-book-open w-5"></i> My Workbook
+            </button>
+            <button onclick="nav('manager')" id="nav-manager" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-briefcase w-5"></i> Manager's Hub
+            </button>
+            <button onclick="nav('quiz')" id="nav-quiz" class="tab-btn w-full text-left px-6 py-3 hover:bg-white/5 transition flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-graduation-cap w-5"></i> Master Quiz
+            </button>
+        </nav>
+
+        <div class="p-4 border-t border-white/10 text-xs text-slate-400 text-center">
+            Based on the 10-Week Curriculum
+        </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-0 w-full bg-mck-blue text-white z-50 px-4 py-3 flex justify-between items-center shadow-md">
+        <span class="font-serif font-bold italic text-xl">Forward.</span>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i class="fa-solid fa-bars text-xl"></i></button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-slate-900/95 z-40 pt-20 px-6 space-y-4 md:hidden overflow-y-auto">
+        <button onclick="nav('overview'); toggleMobile()" class="block w-full text-left py-3 text-white border-b border-white/10">Overview</button>
+        <button onclick="nav('adaptability'); toggleMobile()" class="block w-full text-left py-3 text-white border-b border-white/10">Adaptability</button>
+        <button onclick="nav('problem'); toggleMobile()" class="block w-full text-left py-3 text-white border-b border-white/10">Problem Solving</button>
+        <button onclick="nav('communication'); toggleMobile()" class="block w-full text-left py-3 text-white border-b border-white/10">Communication</button>
+        <button onclick="nav('relationships'); toggleMobile()" class="block w-full text-left py-3 text-white border-b border-white/10">Relationships</button>
+        <button onclick="nav('digital'); toggleMobile()" class="block w-full text-left py-3 text-white border-b border-white/10">Digital Toolkit</button>
+        <button onclick="nav('workbook'); toggleMobile()" class="block w-full text-left py-3 text-blue-400 font-bold">My Workbook</button>
+        <button onclick="nav('quiz'); toggleMobile()" class="block w-full text-left py-3 text-blue-400 font-bold">Master Quiz</button>
+        <button onclick="toggleMobile()" class="absolute top-4 right-4 text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-slate-50 pt-16 md:pt-0 relative" id="main-scroll">
+        
+        <!-- ================= OVERVIEW SECTION ================= -->
+        <section id="view-overview" class="view-section p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <header class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-mck-blue mb-6">The Forward Journey</h1>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    A comprehensive 10-week program designed to equip young professionals with the practical skills needed to thrive in the future of work. It focuses on <span class="font-bold text-mck-accent">Foundational</span>, <span class="font-bold text-mck-accent">Social</span>, and <span class="font-bold text-mck-accent">Digital</span> skills.
+                </p>
+            </header>
+
+            <!-- Timeline -->
+            <div class="relative border-l-4 border-blue-200 ml-6 space-y-12">
+                <!-- Foundation -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 bg-blue-600 rounded-full border-4 border-white shadow"></div>
+                    <h3 class="text-xl font-bold text-slate-900">Foundation Level (Weeks 1-8)</h3>
+                    <p class="text-sm text-slate-500 mb-4">Core cognitive and interpersonal skills.</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <i class="fa-solid fa-brain text-blue-500 mb-2"></i>
+                            <h4 class="font-bold text-sm">Adaptability</h4>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <i class="fa-solid fa-sitemap text-indigo-500 mb-2"></i>
+                            <h4 class="font-bold text-sm">Problem Solving</h4>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <i class="fa-solid fa-bullhorn text-teal-500 mb-2"></i>
+                            <h4 class="font-bold text-sm">Communication</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 bg-indigo-600 rounded-full border-4 border-white shadow"></div>
+                    <h3 class="text-xl font-bold text-slate-900">Advanced Level (Weeks 9-10)</h3>
+                    <p class="text-sm text-slate-500 mb-4">Applied digital skills and emotional intelligence.</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <i class="fa-solid fa-laptop-code text-purple-500 mb-2"></i>
+                            <h4 class="font-bold text-sm">Digital Toolkit</h4>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                            <i class="fa-solid fa-heart text-red-500 mb-2"></i>
+                            <h4 class="font-bold text-sm">Relationships</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 bg-slate-800 rounded-full border-4 border-white shadow"></div>
+                    <h3 class="text-xl font-bold text-slate-900">Network Level (Ongoing)</h3>
+                    <p class="text-slate-600 text-sm">Upon completion, you earn a digital badge and join a global alumni network for lifelong learning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ADAPTABILITY ================= -->
+        <section id="view-adaptability" class="view-section hidden p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-8 border-b pb-4">Adaptability & Resilience</h2>
+            
+            <div class="space-y-12">
+                <!-- Concept 1: The Battery -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">1. The Energy Battery</h3>
+                    <p class="text-slate-600 mb-6">Resilience is not endurance; it is recovery. We fluctuate between zones.</p>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 bg-red-50 p-4 rounded border border-red-100">
+                            <span class="font-bold text-red-700 block mb-1">RED ZONE (Survival)</span>
+                            <ul class="text-xs text-red-600 list-disc list-inside">
+                                <li>Tunnel vision</li>
+                                <li>Defensiveness</li>
+                                <li>"Amygdala Hijack"</li>
+                                <li>Judgmental</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 bg-green-50 p-4 rounded border border-green-100">
+                            <span class="font-bold text-green-700 block mb-1">GREEN ZONE (Learning)</span>
+                            <ul class="text-xs text-green-600 list-disc list-inside">
+                                <li>Open to feedback</li>
+                                <li>Creative</li>
+                                <li>Empathetic</li>
+                                <li>Optimistic</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 2: Cognitive Cycle -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">2. The Cognitive Cycle & Reframing</h3>
+                    <p class="text-slate-600 mb-6">You cannot control the Trigger, but you can control the Thought.</p>
+                    
+                    <div class="flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-slate-700">
+                        <div class="bg-slate-100 px-4 py-2 rounded">Trigger</div>
+                        <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        <div class="bg-slate-100 px-4 py-2 rounded">Emotion</div>
+                        <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded border border-blue-300">Thought (Intervene Here!)</div>
+                        <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        <div class="bg-slate-100 px-4 py-2 rounded">Behavior</div>
+                    </div>
+                    
+                    <div class="mt-6 bg-slate-50 p-4 rounded text-sm italic border-l-4 border-blue-500">
+                        "Reframing is not 'thinking positive'. It is 'thinking realistically' about opportunities in the problem."
+                    </div>
+                </div>
+
+                <!-- Concept 3: Iceberg -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">3. The Iceberg Model</h3>
+                    <p class="text-slate-600 mb-4">To change behavior (visible), you must address what is below the waterline.</p>
+                    <ul class="list-none space-y-2 text-sm text-slate-700 pl-4 border-l border-slate-300">
+                        <li><strong>Above Water:</strong> Behaviors, Actions, Words.</li>
+                        <li class="border-t border-dashed border-blue-300 my-2 pt-2 text-blue-600 text-xs uppercase font-bold">The Waterline</li>
+                        <li><strong>Below Water:</strong> Thoughts ("I'm an imposter")</li>
+                        <li><strong>Below Water:</strong> Feelings (Fear, Anxiety)</li>
+                        <li><strong>Below Water:</strong> Values (Security, Achievement)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROBLEM SOLVING ================= -->
+        <section id="view-problem" class="view-section hidden p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-8 border-b pb-4">Structured Problem Solving</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- SMART -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-indigo-700 mb-2">Step 1: Define (SMART)</h3>
+                    <p class="text-sm text-slate-600 mb-4">A problem well defined is half solved.</p>
+                    <ul class="text-sm space-y-2">
+                        <li><strong>S</strong>pecific (What exactly?)</li>
+                        <li><strong>M</strong>easurable (How much?)</li>
+                        <li><strong>A</strong>ctionable (Can we fix it?)</li>
+                        <li><strong>R</strong>elevant (Does it matter?)</li>
+                        <li><strong>T</strong>ime-bound (By when?)</li>
+                    </ul>
+                </div>
+
+                <!-- MECE -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-indigo-700 mb-2">Step 2: Structure (MECE)</h3>
+                    <p class="text-sm text-slate-600 mb-4">Mutually Exclusive, Collectively Exhaustive.</p>
+                    <div class="flex gap-2 text-xs text-center text-white">
+                        <div class="bg-indigo-400 p-2 flex-1 rounded">No Overlaps</div>
+                        <div class="bg-indigo-600 p-2 flex-1 rounded">No Gaps</div>
+                    </div>
+                </div>
+
+                <!-- Logic Trees -->
+                <div class="col-span-full bg-slate-900 text-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Step 3: Disaggregation (Logic Trees)</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-indigo-300 font-bold mb-2">Issue Tree (The "How")</h4>
+                            <p class="text-xs text-slate-400 mb-2">Use when you know the problem but not the solution.</p>
+                            <pre class="text-xs font-mono bg-black/30 p-4 rounded text-green-400">
+Profit Down?
+├── Revenue Down?
+│   ├── Price too low?
+│   └── Volume too low?
+└── Costs Up?
+    ├── Fixed costs?
+    └── Variable costs?
+                            </pre>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-300 font-bold mb-2">Hypothesis Tree (The "Why")</h4>
+                            <p class="text-xs text-slate-400 mb-2">Use when you have a hunch to test.</p>
+                            <pre class="text-xs font-mono bg-black/30 p-4 rounded text-blue-400">
+Hypothesis: Costs are up.
+├── Material costs rose? (Test)
+└── Labor costs rose? (Test)
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prioritization -->
+                <div class="col-span-full bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-indigo-700 mb-2">Step 4: Prioritization (80/20 Rule)</h3>
+                    <p class="text-slate-600 mb-4">Do not analyze the whole tree. Pick the high-impact branches.</p>
+                    <div class="h-64 border-l-2 border-b-2 border-slate-400 relative bg-slate-50">
+                        <div class="absolute bottom-2 right-2 p-2 bg-indigo-100 text-indigo-800 text-xs font-bold rounded border border-indigo-200">High Impact / Low Effort (Quick Wins)</div>
+                        <div class="absolute top-2 right-2 p-2 bg-yellow-100 text-yellow-800 text-xs font-bold rounded border border-yellow-200">High Impact / High Effort (Major Projects)</div>
+                        <div class="absolute bottom-2 left-2 p-2 bg-red-100 text-red-800 text-xs font-bold rounded border border-red-200">Low Impact / High Effort (Avoid)</div>
+                        <div class="absolute -left-6 top-1/2 -rotate-90 text-xs text-slate-500 font-bold">IMPACT</div>
+                        <div class="absolute -bottom-6 left-1/2 text-xs text-slate-500 font-bold">EFFORT</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= COMMUNICATION ================= -->
+        <section id="view-communication" class="view-section hidden p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-8 border-b pb-4">Communicating for Impact</h2>
+            
+            <div class="space-y-12">
+                <!-- Pyramid -->
+                <div class="bg-blue-50 p-8 rounded-xl border border-blue-100 text-center">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-2">The Pyramid Principle</h3>
+                    <p class="text-blue-700 mb-8">Bottom Line Up Front (BLUF). State the answer first.</p>
+                    
+                    <div class="mx-auto max-w-lg space-y-4">
+                        <div class="bg-blue-600 text-white p-4 rounded font-bold shadow-lg">Main Recommendation (The "What")</div>
+                        <div class="flex gap-2">
+                            <div class="flex-1 bg-blue-400 text-white p-3 rounded text-sm font-semibold">Argument 1</div>
+                            <div class="flex-1 bg-blue-400 text-white p-3 rounded text-sm font-semibold">Argument 2</div>
+                            <div class="flex-1 bg-blue-400 text-white p-3 rounded text-sm font-semibold">Argument 3</div>
+                        </div>
+                        <div class="flex gap-2 opacity-60">
+                            <div class="flex-1 flex gap-1"><div class="flex-1 bg-blue-300 h-2 rounded"></div><div class="flex-1 bg-blue-300 h-2 rounded"></div></div>
+                            <div class="flex-1 flex gap-1"><div class="flex-1 bg-blue-300 h-2 rounded"></div><div class="flex-1 bg-blue-300 h-2 rounded"></div></div>
+                            <div class="flex-1 flex gap-1"><div class="flex-1 bg-blue-300 h-2 rounded"></div><div class="flex-1 bg-blue-300 h-2 rounded"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCR -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Introduction Framework: SCR</h3>
+                    <p class="text-slate-600 mb-4">Use this to set the stage before revealing your Pyramid.</p>
+                    <div class="grid gap-4">
+                        <div class="p-4 border-l-4 border-green-500 bg-slate-50">
+                            <strong>Situation:</strong> Uncontroversial facts everyone agrees on. <br><em>"We have grown 10% this year."</em>
+                        </div>
+                        <div class="p-4 border-l-4 border-yellow-500 bg-slate-50">
+                            <strong>Complication:</strong> The change or problem that triggers action. <br><em>"However, new regulations will cut our margin."</em>
+                        </div>
+                        <div class="p-4 border-l-4 border-blue-500 bg-slate-50">
+                            <strong>Resolution:</strong> Your proposal (Link to Pyramid). <br><em>"Therefore, we must automate operations."</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RELATIONSHIPS ================= -->
+        <section id="view-relationships" class="view-section hidden p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-8 border-b pb-4">Relationships & Feedback</h2>
+
+            <!-- Trust Equation -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 mb-10">
+                <h3 class="text-xl font-bold text-slate-800 mb-6">The Trust Equation</h3>
+                <div class="flex flex-col items-center">
+                    <div class="text-3xl font-serif text-slate-800 font-bold mb-2">
+                        (C + R + I) / S
+                    </div>
+                    <div class="w-full h-px bg-slate-300 max-w-xs mb-4"></div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-center text-sm">
+                        <div>
+                            <span class="block font-bold text-green-600">Credibility (Words)</span>
+                            <span class="text-xs text-slate-500">"I know my stuff"</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-green-600">Reliability (Actions)</span>
+                            <span class="text-xs text-slate-500">"I do what I say"</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-green-600">Intimacy (Emotions)</span>
+                            <span class="text-xs text-slate-500">"I feel safe with you"</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-red-600">Self-Orientation (Motives)</span>
+                            <span class="text-xs text-slate-500">"I care about myself"</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-red-50 text-red-700 px-4 py-2 rounded text-sm">
+                        <i class="fa-solid fa-circle-exclamation mr-2"></i> High Self-Orientation divides (lowers) the total trust score.
+                    </div>
+                </div>
+            </div>
+
+            <!-- SBI Model -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-800 mb-4">The SBI Feedback Model</h3>
+                <p class="text-slate-600 mb-6">Feedback must be specific and non-judgmental.</p>
+                <div class="space-y-4">
+                    <div class="flex flex-col md:flex-row gap-4 border p-4 rounded-lg bg-slate-50">
+                        <div class="w-32 font-bold text-teal-700">Situation</div>
+                        <div class="flex-1 text-slate-700">"In the client meeting yesterday morning..." <span class="text-xs text-slate-400 block">(Anchor in time/place)</span></div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 border p-4 rounded-lg bg-slate-50">
+                        <div class="w-32 font-bold text-teal-700">Behavior</div>
+                        <div class="flex-1 text-slate-700">"...you interrupted the stakeholder twice..." <span class="text-xs text-slate-400 block">(Observable fact, not "you were rude")</span></div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 border p-4 rounded-lg bg-slate-50">
+                        <div class="w-32 font-bold text-teal-700">Impact</div>
+                        <div class="flex-1 text-slate-700">"...it caused them to become quiet and we missed their requirements." <span class="text-xs text-slate-400 block">(The result)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= DIGITAL TOOLKIT ================= -->
+        <section id="view-digital" class="view-section hidden p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-8 border-b pb-4">My Digital Toolkit</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Design Thinking -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-purple-100 p-2 rounded text-purple-600"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h3 class="font-bold text-slate-900">Design Thinking</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">A user-centric approach to innovation.</p>
+                    <ol class="text-sm space-y-2 list-decimal list-inside text-slate-700">
+                        <li><strong>Empathize:</strong> Understand the user's pain.</li>
+                        <li><strong>Define:</strong> State the user's problem.</li>
+                        <li><strong>Ideate:</strong> Brainstorm without limits.</li>
+                        <li><strong>Prototype:</strong> Build a rough version.</li>
+                        <li><strong>Test:</strong> Get feedback and iterate.</li>
+                    </ol>
+                </div>
+
+                <!-- Agile -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-blue-100 p-2 rounded text-blue-600"><i class="fa-solid fa-rotate"></i></div>
+                        <h3 class="font-bold text-slate-900">Agile Ways of Working</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">Iterative delivery over perfect planning.</p>
+                    <ul class="text-sm space-y-2 list-disc list-inside text-slate-700">
+                        <li><strong>Sprints:</strong> Short 2-week work cycles.</li>
+                        <li><strong>MVP:</strong> Minimum Viable Product.</li>
+                        <li><strong>Retrospectives:</strong> "What went well? What didn't?"</li>
+                        <li><strong>Stand-ups:</strong> Daily 15-min syncs.</li>
+                    </ul>
+                </div>
+
+                <!-- Data & AI -->
+                <div class="col-span-full bg-slate-900 text-white p-8 rounded-xl shadow-lg">
+                    <h3 class="font-bold text-xl mb-4">Data, AI & Cloud</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <h4 class="text-blue-300 font-bold mb-2">Data Types</h4>
+                            <p class="text-xs text-slate-400"><strong>Descriptive:</strong> What happened?<br><strong>Predictive:</strong> What will happen?<br><strong>Prescriptive:</strong> What should we do?</p>
+                        </div>
+                        <div>
+                            <h4 class="text-blue-300 font-bold mb-2">Cloud Computing</h4>
+                            <p class="text-xs text-slate-400">On-demand availability of computer system resources (storage, power) without direct management. Enables scalability.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-blue-300 font-bold mb-2">Gen AI</h4>
+                            <p class="text-xs text-slate-400">Using LLMs to automate synthesis, drafting, and coding. Focus on value creation, not just efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= WORKBOOK ================= -->
+        <section id="view-workbook" class="view-section hidden p-8 md:p-16 max-w-4xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-4">My Reflection Canvas</h2>
+            <p class="text-slate-600 mb-8">Reflections are saved automatically to your browser.</p>
+
+            <div class="space-y-6">
+                <!-- Reflection Block -->
+                <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+                    <label class="block font-bold text-yellow-800 mb-2">Adaptability: What is your most common "Red Zone" trigger?</label>
+                    <textarea id="note-adapt" class="w-full h-24 p-3 rounded border-yellow-300 focus:ring-yellow-500 bg-white" placeholder="Type here..."></textarea>
+                </div>
+
+                <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200">
+                    <label class="block font-bold text-indigo-800 mb-2">Problem Solving: A current problem I can apply Logic Trees to:</label>
+                    <textarea id="note-prob" class="w-full h-24 p-3 rounded border-indigo-300 focus:ring-indigo-500 bg-white" placeholder="Type here..."></textarea>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                    <label class="block font-bold text-blue-800 mb-2">Digital Toolkit: One way I will use data to improve my decisions:</label>
+                    <textarea id="note-digi" class="w-full h-24 p-3 rounded border-blue-300 focus:ring-blue-500 bg-white" placeholder="Type here..."></textarea>
+                </div>
+                
+                <div class="flex justify-end">
+                    <button onclick="clearNotes()" class="text-red-500 text-sm hover:underline">Clear All Notes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MANAGER'S HUB ================= -->
+        <section id="view-manager" class="view-section hidden p-8 md:p-16 max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl font-serif font-bold text-mck-blue mb-8">Manager's Handbook</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Scenario: Vague Deliverables</h3>
+                    <p class="text-sm text-slate-600 mb-4">Team is confused about a task.</p>
+                    <div class="bg-slate-100 p-3 rounded text-sm">
+                        <strong>Apply Problem Solving:</strong> Use the Problem Statement Worksheet. Define context, success criteria, and constraints <em>before</em> delegating.
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Scenario: Defensive Employee</h3>
+                    <p class="text-sm text-slate-600 mb-4">Employee reacts badly to feedback.</p>
+                    <div class="bg-slate-100 p-3 rounded text-sm">
+                        <strong>Apply Adaptability:</strong> They are in the Red Zone. Do not push. Give them space to recover. Reframe the feedback using SBI later.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= QUIZ ================= -->
+        <section id="view-quiz" class="view-section hidden p-8 md:p-16 max-w-3xl mx-auto fade-in">
+             <div class="text-center" id="quiz-start">
+                <h2 class="text-3xl font-serif font-bold text-mck-blue mb-4">Master Assessment</h2>
+                <p class="text-slate-600 mb-8">20 Questions covering the entire encyclopedia.</p>
+                <button onclick="startQuiz()" class="bg-mck-accent text-white px-8 py-3 rounded hover:bg-mck-light transition">Start Quiz</button>
+            </div>
+            
+            <div id="quiz-ui" class="hidden">
+                <div class="flex justify-between text-sm font-bold text-slate-400 mb-4">
+                    <span>Question <span id="q-idx">1</span>/20</span>
+                    <span>Score: <span id="q-score">0</span></span>
+                </div>
+                <div class="w-full bg-slate-200 h-2 rounded-full mb-8"><div id="q-bar" class="bg-mck-accent h-2 rounded-full transition-all" style="width: 5%"></div></div>
+                
+                <h3 id="q-txt" class="text-xl font-bold text-slate-800 mb-8 h-20">Loading...</h3>
+                
+                <div class="grid gap-3 mb-6">
+                    <button onclick="answer(true)" id="btn-t" class="w-full text-left p-4 border rounded hover:bg-slate-50">True</button>
+                    <button onclick="answer(false)" id="btn-f" class="w-full text-left p-4 border rounded hover:bg-slate-50">False</button>
+                </div>
+                
+                <div id="q-fb" class="hidden bg-slate-100 p-4 rounded text-sm text-slate-700">
+                    <p id="q-exp" class="mb-3"></p>
+                    <button onclick="nextQ()" class="bg-mck-blue text-white px-4 py-2 rounded text-xs">Next</button>
+                </div>
+            </div>
+            
+            <div id="quiz-end" class="hidden text-center">
+                <h2 class="text-2xl font-bold mb-4">Assessment Complete</h2>
+                <p class="text-xl mb-6">Final Score: <span id="final-s">0</span>/20</p>
+                <button onclick="resetQuiz()" class="bg-slate-800 text-white px-6 py-2 rounded">Retake</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Navigation Logic
+        function nav(view) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById('view-' + view).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            const btn = document.getElementById('nav-' + view);
+            if(btn) btn.classList.add('active');
+            
+            document.getElementById('main-scroll').scrollTop = 0;
+            
+            // Mobile close
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+        
+        function toggleMobile() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        // Local Storage Workbook
+        const noteIds = ['note-adapt', 'note-prob', 'note-digi'];
+        noteIds.forEach(id => {
+            const el = document.getElementById(id);
+            el.value = localStorage.getItem('fwd_' + id) || '';
+            el.addEventListener('input', () => localStorage.setItem('fwd_' + id, el.value));
         });
 
-        // Render Radar Chart
-        const ctxRadar = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctxRadar, {
-            type: 'radar',
-            data: skillsData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    r: {
-                        angleLines: { color: '#e2e8f0' },
-                        grid: { color: '#e2e8f0' },
-                        pointLabels: { font: { size: 11, family: 'Inter' } },
-                        suggestedMin: 0,
-                        suggestedMax: 10
-                    }
-                }
+        function clearNotes() {
+            if(confirm('Clear all notes?')) {
+                noteIds.forEach(id => {
+                    localStorage.removeItem('fwd_' + id);
+                    document.getElementById(id).value = '';
+                });
             }
-        });
+        }
 
+        // Master Quiz Data
+        const questions = [
+            {q: "The 'Amygdala Hijack' puts you in the Green Zone.", a: false, exp: "False. It triggers the Red Zone (Survival Mode)."},
+            {q: "MECE stands for Mutually Exclusive, Collectively Exhaustive.", a: true, exp: "Correct. No gaps, no overlaps."},
+            {q: "In the Trust Equation, Self-Orientation is in the numerator.", a: false, exp: "False. It is the denominator. High self-interest lowers trust."},
+            {q: "An Issue Tree asks 'Why' something is happening.", a: false, exp: "False. Issue Trees ask 'How' to break down a problem. Hypothesis Trees ask 'Why'."},
+            {q: "The Pyramid Principle states you should give the recommendation first.", a: true, exp: "Correct. Bottom Line Up Front (BLUF)."},
+            {q: "SBI stands for Situation, Behavior, Impact.", a: true, exp: "Correct. A model for specific feedback."},
+            {q: "Agile methodology relies on 'Waterfalls' and long planning cycles.", a: false, exp: "False. Agile relies on Sprints and iteration."},
+            {q: "Reframing changes the Trigger of an event.", a: false, exp: "False. It changes your Thought about the trigger."},
+            {q: "Design Thinking starts with Ideation.", a: false, exp: "False. It starts with Empathy."},
+            {q: "Predictive Analytics tells you what happened in the past.", a: false, exp: "False. Descriptive tells the past. Predictive forecasts the future."},
+            {q: "Synthesis is simply summarizing the facts.", a: false, exp: "False. Synthesis combines facts to create new insight."},
+            {q: "The 80/20 Rule suggests focusing on the vital few inputs.", a: true, exp: "Correct. Pareto Principle."},
+            {q: "In the Iceberg Model, thoughts and feelings are above the waterline.", a: false, exp: "False. False. Only behavior is visible above water."},
+            {q: "A SMART problem statement must be Time-bound.", a: true, exp: "Correct."},
+            {q: "Cloud computing allows for scalable, on-demand resources.", a: true, exp: "Correct."},
+            {q: "Micro-habits help you recover to the Green Zone.", a: true, exp: "Correct."},
+            {q: "High Impact + Low Effort = Thankless Task.", a: false, exp: "False. That is a Quick Win."},
+            {q: "Social Capital is built through transactional networking.", a: false, exp: "False. It is built through trust-based relationships."},
+            {q: "The SCR framework is used for Introductions.", a: true, exp: "Correct. Situation, Complication, Resolution."},
+            {q: "MVP stands for Maximum Valuable Product.", a: false, exp: "False. Minimum Viable Product."}
+        ];
+
+        let qIdx = 0, score = 0;
+
+        function startQuiz() {
+            document.getElementById('quiz-start').classList.add('hidden');
+            document.getElementById('quiz-ui').classList.remove('hidden');
+            loadQ();
+        }
+
+        function loadQ() {
+            const q = questions[qIdx];
+            document.getElementById('q-txt').innerText = q.q;
+            document.getElementById('q-idx').innerText = qIdx + 1;
+            document.getElementById('q-bar').style.width = ((qIdx+1)/20)*100 + '%';
+            document.getElementById('q-fb').classList.add('hidden');
+            document.getElementById('btn-t').disabled = false;
+            document.getElementById('btn-f').disabled = false;
+            document.getElementById('btn-t').className = "w-full text-left p-4 border rounded hover:bg-slate-50";
+            document.getElementById('btn-f').className = "w-full text-left p-4 border rounded hover:bg-slate-50";
+        }
+
+        function answer(isTrue) {
+            const q = questions[qIdx];
+            const correct = isTrue === q.a;
+            if(correct) score++;
+            document.getElementById('q-score').innerText = score;
+            
+            const btn = isTrue ? document.getElementById('btn-t') : document.getElementById('btn-f');
+            btn.className = correct ? "w-full text-left p-4 border rounded bg-green-100 border-green-500 text-green-800" : "w-full text-left p-4 border rounded bg-red-100 border-red-500 text-red-800";
+            
+            document.getElementById('btn-t').disabled = true;
+            document.getElementById('btn-f').disabled = true;
+            
+            document.getElementById('q-exp').innerText = (correct ? "Correct! " : "Incorrect. ") + q.exp;
+            document.getElementById('q-fb').classList.remove('hidden');
+        }
+
+        function nextQ() {
+            qIdx++;
+            if(qIdx < questions.length) loadQ();
+            else {
+                document.getElementById('quiz-ui').classList.add('hidden');
+                document.getElementById('quiz-end').classList.remove('hidden');
+                document.getElementById('final-s').innerText = score;
+            }
+        }
+        
+        function resetQuiz() {
+            qIdx = 0; score = 0;
+            document.getElementById('q-score').innerText = 0;
+            document.getElementById('quiz-end').classList.add('hidden');
+            document.getElementById('quiz-start').classList.remove('hidden');
+        }
+        
+        // Init
+        nav('overview');
     </script>
 </body>
 </html>
