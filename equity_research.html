@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBL Equity Research | Amit Verma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-grid-pattern {
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <nav class="bg-emerald-900 border-b border-emerald-800 text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center gap-2 text-emerald-100 hover:text-white font-medium transition">
+                    <span>&larr; Back to Portfolio</span>
+                </a>
+                <div class="text-right">
+                    <span class="block font-bold leading-tight">United Breweries Ltd</span>
+                    <span class="text-xs text-emerald-300 block">Ticker: UBL | Sector: Beverages</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4 border-b border-slate-200 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900">FY24 Annual Equity Research</h1>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200">Date: April 15, 2024</span>
+                </div>
+                <p class="text-slate-600 text-lg">A deep dive into UBL's financials, strategy, and market position.</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-md text-center">
+                    <span class="block text-xs uppercase opacity-80 font-bold tracking-wider">Verdict</span>
+                    <span class="block text-2xl font-bold">ACCUMULATE</span>
+                </div>
+                <div class="bg-white border border-slate-200 px-6 py-3 rounded-xl shadow-sm text-center">
+                    <span class="block text-xs uppercase text-slate-500 font-bold tracking-wider">CMP (FY24)</span>
+                    <span class="block text-2xl font-bold text-slate-900">₹1,780</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Section: Research 101 -->
+        <div class="mb-12 bg-white rounded-2xl shadow-sm border border-indigo-100 overflow-hidden">
+            <div class="bg-indigo-50 px-8 py-4 border-b border-indigo-100 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-indigo-900">📚 Equity Research 101: How We Built This Report</h2>
+                <span class="text-xs font-bold text-indigo-500 uppercase tracking-wide">Methodology</span>
+            </div>
+            <div class="p-8">
+                <p class="text-slate-600 mb-6 max-w-3xl">
+                    Equity Research is the art of analyzing a business to decide if its stock is worth buying. 
+                    It's not just guessing; it's a structured 4-step process that we have applied to UBL below:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="relative pl-8 border-l-2 border-indigo-200">
+                        <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-600 border-2 border-white"></span>
+                        <h4 class="font-bold text-indigo-900 mb-2">Step 1: The Business</h4>
+                        <p class="text-sm text-slate-600">
+                            <strong>"What do they do?"</strong><br>
+                            We analyze products (Kingfisher Beer) and geography (Key states like Karnataka).
+                        </p>
+                    </div>
+                    <div class="relative pl-8 border-l-2 border-indigo-200">
+                        <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-600 border-2 border-white"></span>
+                        <h4 class="font-bold text-indigo-900 mb-2">Step 2: The Environment (EIC)</h4>
+                        <p class="text-sm text-slate-600">
+                            <strong>"Is the wind in their sails?"</strong><br>
+                            We check the <u>E</u>conomy, <u>I</u>ndustry trends (Premiumization), and <u>C</u>ompany strengths.
+                        </p>
+                    </div>
+                    <div class="relative pl-8 border-l-2 border-indigo-200">
+                        <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-600 border-2 border-white"></span>
+                        <h4 class="font-bold text-indigo-900 mb-2">Step 3: The Numbers</h4>
+                        <p class="text-sm text-slate-600">
+                            <strong>"Are they healthy?"</strong><br>
+                            We audit the P&L (Profit), Balance Sheet (Debt), and Cash Flow.
+                        </p>
+                    </div>
+                    <div class="relative pl-8 border-l-2 border-indigo-200">
+                        <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-600 border-2 border-white"></span>
+                        <h4 class="font-bold text-indigo-900 mb-2">Step 4: Comparison</h4>
+                        <p class="text-sm text-slate-600">
+                            <strong>"Are they better than others?"</strong><br>
+                            We compare ratios against rivals (like SDBL) to see who is winning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: EIC Analysis -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <span class="bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                EIC Analysis
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Economy -->
+                <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-xl">🌏</div>
+                        <h3 class="font-bold text-blue-900 text-lg">Economy</h3>
+                    </div>
+                    <p class="text-sm text-slate-700 mb-3"><strong>The Big Picture:</strong> India's economy is growing, meaning people have more disposable income. However, high inflation (food prices) in FY24 meant people were careful with spending.</p>
+                    <p class="text-xs font-bold text-blue-700 uppercase tracking-wide">Impact: Neutral to Positive</p>
+                </div>
+                <!-- Industry -->
+                <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100 hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-xl">🍺</div>
+                        <h3 class="font-bold text-amber-900 text-lg">Industry</h3>
+                    </div>
+                    <p class="text-sm text-slate-700 mb-3"><strong>The Trend:</strong> "Premiumization". People aren't just drinking <em>more</em>; they are drinking <em>better</em>. They are shifting from strong, cheap beer to premium mild beers (like Ultra).</p>
+                    <p class="text-xs font-bold text-amber-700 uppercase tracking-wide">Trend: Highly Positive</p>
+                </div>
+                <!-- Company -->
+                <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-xl">🏰</div>
+                        <h3 class="font-bold text-emerald-900 text-lg">Company</h3>
+                    </div>
+                    <p class="text-sm text-slate-700 mb-3"><strong>The Strategy:</strong> UBL is the "King". Instead of fighting a price war, they focused on selling profitable premium beers to protect their margins, even if it meant selling slightly less volume.</p>
+                    <p class="text-xs font-bold text-emerald-700 uppercase tracking-wide">Position: Market Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SWOT Analysis -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">SWOT Analysis (Detailed)</h2>
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                    
+                    <!-- Internal Factors -->
+                    <div class="p-8">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                            <span class="w-2 h-6 bg-slate-900 rounded-full"></span> Internal Factors (Control)
+                        </h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-bold text-emerald-700 mb-2 flex items-center gap-2">✅ Strengths</h4>
+                            <ul class="list-disc ml-5 text-sm text-slate-600 space-y-2">
+                                <li><strong>Kingfisher Brand:</strong> It's synonymous with "Beer" in India. Unmatched brand recall.</li>
+                                <li><strong>Heineken Backing:</strong> Access to global technology, brewing standards, and premium brands (Heineken Silver).</li>
+                                <li><strong>Debt-Free:</strong> They owe zero money to banks. This makes them very safe during bad economic times.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-red-600 mb-2 flex items-center gap-2">❌ Weaknesses</h4>
+                            <ul class="list-disc ml-5 text-sm text-slate-600 space-y-2">
+                                <li><strong>Working Capital Heavy:</strong> They have a lot of cash tied up in inventory and receivables (money owed to them).</li>
+                                <li><strong>Regional Dependence:</strong> A huge chunk of sales comes from just a few states (Karnataka, Maharashtra), creating concentration risk.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- External Factors -->
+                    <div class="p-8 bg-slate-50/50">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                            <span class="w-2 h-6 bg-slate-400 rounded-full"></span> External Factors (No Control)
+                        </h3>
+
+                        <div class="mb-8">
+                            <h4 class="font-bold text-blue-600 mb-2 flex items-center gap-2">🚀 Opportunities</h4>
+                            <ul class="list-disc ml-5 text-sm text-slate-600 space-y-2">
+                                <li><strong>Young India:</strong> 10-12 million Indians turn 21 (legal drinking age) every year. That's a huge new customer base.</li>
+                                <li><strong>Premium Wave:</strong> Selling one bottle of "Heineken" earns more profit than two bottles of cheap lager.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-orange-600 mb-2 flex items-center gap-2">⚠️ Threats</h4>
+                            <ul class="list-disc ml-5 text-sm text-slate-600 space-y-2">
+                                <li><strong>Government Regulation:</strong> State governments can ban alcohol or raise taxes overnight (like Kerala or Bihar did previously).</li>
+                                <li><strong>Input Costs:</strong> If Barley or Glass prices shoot up, it eats directly into their profits.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: Competitor Analysis -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <span class="bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span>
+                Head-to-Head: UBL vs. Competition
+            </h2>
+            <p class="text-slate-600 mb-6 max-w-4xl">
+                In FY24, the market saw two very different strategies. <strong>UBL</strong> played it safe (Defense), focusing on profit margins. <strong>Som Distilleries (SDBL)</strong> played it risky (Offense), chasing massive sales growth.
+            </p>
+            
+            <div class="overflow-hidden bg-white rounded-2xl shadow-sm border border-slate-200">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-slate-100 text-slate-700 font-bold uppercase">
+                        <tr>
+                            <th class="px-6 py-4">Metric</th>
+                            <th class="px-6 py-4 text-emerald-800 bg-emerald-50 border-b-2 border-emerald-500">United Breweries (UBL)</th>
+                            <th class="px-6 py-4 text-slate-800 border-b-2 border-slate-300">Som Distilleries (SDBL)</th>
+                            <th class="px-6 py-4 text-slate-500">Winner / Insight</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-bold text-slate-900">Revenue Growth</td>
+                            <td class="px-6 py-4 bg-emerald-50/30">8.3% (Steady)</td>
+                            <td class="px-6 py-4 font-bold text-green-600">59.0% (Explosive)</td>
+                            <td class="px-6 py-4 text-xs text-slate-500">SDBL wins on raw speed. They grabbed market share aggressively.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-bold text-slate-900">EBITDA Margin</td>
+                            <td class="px-6 py-4 bg-emerald-50/30">8.6%</td>
+                            <td class="px-6 py-4 font-bold text-green-600">12.1%</td>
+                            <td class="px-6 py-4 text-xs text-slate-500">SDBL is currently more profitable per unit due to massive scale.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-bold text-slate-900">Return on Equity (RoE)</td>
+                            <td class="px-6 py-4 bg-emerald-50/30">9.8%</td>
+                            <td class="px-6 py-4 font-bold text-green-600">14.0%</td>
+                            <td class="px-6 py-4 text-xs text-slate-500">SDBL generated better returns for shareholders in FY24.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-bold text-slate-900">Safety (Debt)</td>
+                            <td class="px-6 py-4 bg-emerald-50/30 font-bold text-green-600">Debt Free (Zero Loans)</td>
+                            <td class="px-6 py-4 text-red-600">Leveraged (Has Loans)</td>
+                            <td class="px-6 py-4 text-xs text-slate-500">UBL wins on Safety. If the market crashes, UBL is safe; SDBL is at risk.</td>
+                        </tr>
+                        <tr class="bg-slate-50">
+                            <td class="px-6 py-4 font-bold text-slate-900">The Verdict</td>
+                            <td class="px-6 py-4 bg-emerald-50/30 font-medium text-emerald-800">The "Defensive Anchor"<br><span class="text-xs font-normal">Buy for safety & long-term stability.</span></td>
+                            <td class="px-6 py-4 font-medium text-slate-800">The "Aggressive Challenger"<br><span class="text-xs font-normal">Buy for high-risk, high-reward growth.</span></td>
+                            <td class="px-6 py-4"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- STEP 3: Financials (With Explanations) -->
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <span class="bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+            The Numbers (Financial Analysis)
+        </h2>
+
+        <!-- Consolidated P&L Table -->
+        <div class="mb-10">
+            <h3 class="text-lg font-bold text-emerald-800 mb-2">1. Profit & Loss Statement</h3>
+            <p class="text-sm text-slate-500 mb-4">This tells us how much money the company made (Revenue) and how much they kept (Profit).</p>
+            <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                <table class="w-full text-sm text-left text-slate-600">
+                    <thead class="bg-slate-50 text-slate-700 uppercase text-xs">
+                        <tr>
+                            <th class="px-4 py-3 sticky left-0 bg-slate-50">Metric</th>
+                            <th class="px-4 py-3 text-right">FY21</th>
+                            <th class="px-4 py-3 text-right">FY22</th>
+                            <th class="px-4 py-3 text-right">FY23</th>
+                            <th class="px-4 py-3 text-right bg-emerald-50 text-emerald-900">FY24</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900 sticky left-0 bg-white">Revenue (Sales)</td>
+                            <td class="px-4 py-3 text-right">42,431</td>
+                            <td class="px-4 py-3 text-right">58,384</td>
+                            <td class="px-4 py-3 text-right">74,999</td>
+                            <td class="px-4 py-3 text-right font-bold text-emerald-900">81,227</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900 sticky left-0 bg-white">EBITDA (Operating Profit)</td>
+                            <td class="px-4 py-3 text-right">3,811</td>
+                            <td class="px-4 py-3 text-right">6,966</td>
+                            <td class="px-4 py-3 text-right">6,162</td>
+                            <td class="px-4 py-3 text-right font-bold text-emerald-900">6,962</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900 sticky left-0 bg-white">Net Profit (Take Home)</td>
+                            <td class="px-4 py-3 text-right">1,132</td>
+                            <td class="px-4 py-3 text-right">3,656</td>
+                            <td class="px-4 py-3 text-right">3,081</td>
+                            <td class="px-4 py-3 text-right font-bold text-emerald-900">4,093</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-2 p-3 bg-slate-100 rounded-lg border border-slate-200 text-xs text-slate-600">
+                <strong>💡 Insight:</strong> Revenue grew by 8.3% to ₹8,122 Cr, but Net Profit jumped significantly to ₹409 Cr. This shows they became more efficient at making money this year.
+            </div>
+        </div>
+
+        <!-- Ratios -->
+        <div class="mb-10">
+            <h3 class="text-lg font-bold text-emerald-800 mb-2">2. Key Ratios</h3>
+            <p class="text-sm text-slate-500 mb-4">Ratios help us compare the company's health across different years.</p>
+            <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                <table class="w-full text-sm text-left text-slate-600">
+                    <thead class="bg-slate-50 text-slate-700 uppercase text-xs">
+                        <tr>
+                            <th class="px-4 py-3 sticky left-0 bg-slate-50">Ratio</th>
+                            <th class="px-4 py-3 text-right">FY21</th>
+                            <th class="px-4 py-3 text-right">FY22</th>
+                            <th class="px-4 py-3 text-right">FY23</th>
+                            <th class="px-4 py-3 text-right bg-emerald-50 text-emerald-900">FY24</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900 sticky left-0 bg-white">EPS (Earnings Per Share)</td>
+                            <td class="px-4 py-3 text-right">4.6</td>
+                            <td class="px-4 py-3 text-right">13.8</td>
+                            <td class="px-4 py-3 text-right">12.5</td>
+                            <td class="px-4 py-3 text-right font-bold text-emerald-700">15.5</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900 sticky left-0 bg-white">EBITDA Margin (%)</td>
+                            <td class="px-4 py-3 text-right">8.9%</td>
+                            <td class="px-4 py-3 text-right">11.9%</td>
+                            <td class="px-4 py-3 text-right">8.2%</td>
+                            <td class="px-4 py-3 text-right font-bold text-emerald-700">8.6%</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-medium text-slate-900 sticky left-0 bg-white">P/E Ratio (Valuation)</td>
+                            <td class="px-4 py-3 text-right">448.1</td>
+                            <td class="px-4 py-3 text-right">147.4</td>
+                            <td class="px-4 py-3 text-right">163.8</td>
+                            <td class="px-4 py-3 text-right font-bold">131.3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-2 p-3 bg-slate-100 rounded-lg border border-slate-200 text-xs text-slate-600">
+                <strong>💡 Insight:</strong> The EPS increased to ₹15.5, meaning each share you own earned more profit. The P/E dropped to 131.3x, making the stock slightly "cheaper" than last year relative to its earnings.
+            </div>
+        </div>
+
+        <div class="text-center mt-12 pb-12 border-t border-slate-200 pt-8">
+            <p class="text-sm text-slate-500 mb-2 font-medium">Research compiled by Amit Verma</p>
+            <p class="text-xs text-slate-400">Data Source: Annual Report 2023-24 & Sector Analysis Report (FY23-FY24)</p>
+        </div>
+
+    </main>
+
+    <script>
+        // --- CHARTS CONFIGURATION (FY24 Focus) ---
+        
+        // 1. Revenue Chart
+        const ctxRev = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctxRev, {
+            type: 'bar',
+            data: {
+                labels: ['FY21', 'FY22', 'FY23', 'FY24'],
+                datasets: [{
+                    label: 'Revenue (₹ Cr)',
+                    data: [4243, 5838, 7499, 8122],
+                    backgroundColor: ['#d1fae5', '#a7f3d0', '#6ee7b7', '#10b981'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: false, grid: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 2. EBITDA Margin Chart
+        const ctxMargin = document.getElementById('marginChart').getContext('2d');
+        new Chart(ctxMargin, {
+            type: 'line',
+            data: {
+                labels: ['FY21', 'FY22', 'FY23', 'FY24'],
+                datasets: [{
+                    label: 'EBITDA Margin (%)',
+                    data: [8.9, 11.9, 8.2, 8.6],
+                    borderColor: '#059669',
+                    backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: false, grid: { color: '#f1f5f9' }, min: 6 },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
