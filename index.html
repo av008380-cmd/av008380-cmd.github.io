@@ -25,14 +25,6 @@
                 height: 350px;
             }
         }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
@@ -47,8 +39,9 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#dashboard" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Sales Dashboard</a>
                     <a href="#experience" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
-                    <a href="#skills" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills & Certs</a>
+                    <a href="#skills" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
                     <a href="#projects" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
+                    <a href="certificates.html" class="text-slate-500 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Certificates</a>
                     
                     <a href="forward.html" class="bg-slate-900 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors">McKinsey Program</a>
                 </div>
@@ -63,7 +56,7 @@
                 <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Experience</a>
                 <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Skills</a>
                 <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Projects</a>
-                
+                <a href="certificates.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-slate-50">Certificates</a>
                 <a href="forward.html" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100">McKinsey Program</a>
             </div>
         </div>
@@ -85,12 +78,12 @@
         </p>
         <div class="mt-8 flex justify-center gap-4">
             <a href="mailto:av008380@gmail.com" class="px-8 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-700 transition shadow-lg font-medium">Contact Me</a>
-            <a href="forward.html" class="px-8 py-3 bg-white text-slate-900 border border-slate-300 rounded-lg hover:bg-slate-50 transition font-medium">View McKinsey Project</a>
+            <a href="certificates.html" class="px-8 py-3 bg-white text-slate-900 border border-slate-300 rounded-lg hover:bg-slate-50 transition font-medium">View Certificates</a>
         </div>
         
         <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-200 pt-8">
             <div>
-                <div class="text-3xl font-bold text-slate-900">₹18.2L+</div>
+                <div class="text-3xl font-bold text-slate-900">₹50.2L+</div>
                 <div class="text-sm text-slate-500 uppercase tracking-wide">Total Revenue Generated</div>
             </div>
             <div>
@@ -122,7 +115,7 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm transition hover:shadow-md">
                     <div class="text-slate-500 text-sm font-medium uppercase mb-1">Current Sales (K3M LLP)</div>
                     <div class="text-3xl font-bold text-slate-900 flex items-end gap-2">
-                        <span>₹13,00,000</span>
+                        <span>₹45,00,000</span>
                         <span class="text-emerald-600 text-sm font-semibold mb-1">▲ Active</span>
                     </div>
                     <p class="text-xs text-slate-500 mt-2">Driven by 3M Retro Reflective Tape sales (Sept '25 - Present)</p>
@@ -148,7 +141,7 @@
                 
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                     <h3 class="text-lg font-bold text-slate-900 mb-2">Revenue Contribution by Role</h3>
-                    <p class="text-sm text-slate-500 mb-6">Breakdown of the total ₹18.2L generated revenue.</p>
+                    <p class="text-sm text-slate-500 mb-6">Breakdown of the total ₹50.2L generated revenue.</p>
                     <div class="chart-container">
                         <canvas id="revenuePieChart"></canvas>
                     </div>
@@ -175,7 +168,7 @@
                 <div class="relative pl-8">
                     <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-emerald-500 border-2 border-white"></div>
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-slate-900">Sales Associate (Road Safety Division)</h3>
+                        <h3 class="text-xl font-bold text-slate-900">Sales & Business Development Associate</h3>
                         <span class="text-sm font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">Sep 2025 - Present</span>
                     </div>
                     <div class="text-lg text-slate-700 font-medium mb-4">K3M LLP • Manufacturing & Distribution</div>
@@ -183,7 +176,8 @@
                         Spearheading sales for 3M retro-reflective tapes used on commercial vehicles to enhance road safety and compliance.
                     </p>
                     <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2">
-                        <li><strong>Revenue Impact:</strong> Achieved a total sales volume of <strong>₹13 Lakhs</strong> within 4 months.</li>
+                        <li><strong>Revenue Impact:</strong> Achieved a total sales volume of <strong>₹45 Lakhs</strong> within 4 months.</li>
+                        <li><strong>Strategic Planning:</strong> Worked closely with the Vice President to formulate and execute high-impact sales strategies.</li>
                         <li><strong>B2B Sales:</strong> Established relationships with commercial fleet operators and vehicle body manufacturers.</li>
                         <li><strong>Product Knowledge:</strong> Specialized in technical specifications of 3M safety products for regulatory compliance.</li>
                     </ul>
@@ -221,9 +215,11 @@
         </div>
     </section>
 
+    <!-- Restoring Skills Section to fix Canvas ID Error -->
     <section id="skills" class="py-16 bg-white border-y border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-10 text-center">Skills & Competencies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 
                 <div>
                     <h2 class="text-2xl font-bold text-slate-900 mb-6">Education</h2>
@@ -239,50 +235,12 @@
                             <p class="text-slate-600 mt-2">Score: 63.48%</p>
                         </div>
                     </div>
-
-                    <h2 class="text-2xl font-bold text-slate-900 mt-10 mb-6">Key Competencies</h2>
-                    <div class="chart-container" style="height: 300px;">
-                        <canvas id="skillsChart"></canvas>
-                    </div>
                 </div>
 
                 <div>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6">Certifications</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        
-                        <div class="bg-slate-900 text-white p-5 rounded-xl col-span-1 sm:col-span-2 shadow-md flex items-center justify-between">
-                            <div>
-                                <h3 class="font-bold text-lg">McKinsey Forward Program</h3>
-                                <p class="text-slate-300 text-sm mt-1">Foundational Skills for the Future of Work</p>
-                                <a href="forward.html" class="inline-block mt-3 text-emerald-400 text-sm font-bold hover:text-emerald-300 hover:underline">View Encyclopedia &rarr;</a>
-                            </div>
-                            <span class="text-2xl">✨</span>
-                        </div>
-
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Financial Modeling</h3>
-                            <p class="text-slate-500 text-sm">Finance Veda</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Equity Research</h3>
-                            <p class="text-slate-500 text-sm">Finance Veda</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Digital Marketing</h3>
-                            <p class="text-slate-500 text-sm">Great Learning</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Power BI & Excel</h3>
-                            <p class="text-slate-500 text-sm">Simplilearn / Great Learning</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">Lean Six Sigma</h3>
-                            <p class="text-slate-500 text-sm">Foundation Level</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
-                            <h3 class="font-bold text-slate-800">HubSpot & Salesforce</h3>
-                            <p class="text-slate-500 text-sm">CRM Essentials</p>
-                        </div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6">Key Competencies</h2>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="skillsChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -291,35 +249,59 @@
 
     <section id="projects" class="py-16 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-10 text-center">Academic & Live Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-900">Academic & Live Projects</h2>
+                <a href="certificates.html" class="text-emerald-600 font-semibold hover:text-emerald-700 hover:underline">View Certifications &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
-                    <div class="h-10 w-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4 text-xl">📊</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Equity Research Analysis</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">Finance Veda</p>
-                    <p class="text-slate-600 text-sm mb-4">
-                        Conducted deep-dive financial analysis of companies in the alcohol industry. Performed ratio analysis, SWOT, and built financial models to determine intrinsic share value.
-                    </p>
-                </div>
+                <a href="digital_marketing.html" class="block group">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm group-hover:shadow-lg transition h-full">
+                        <div class="h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4 text-xl">🌐</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">Digital Marketing Strategy</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">SEO & Core Web Vitals</p>
+                        <p class="text-slate-600 text-sm mb-4">
+                            Deep dive into SEO keyword strategy ("oversized t-shirt") and performance benchmarking against Powerlook and Souled Store.
+                        </p>
+                        <span class="text-emerald-600 text-sm font-semibold">View Project &rarr;</span>
+                    </div>
+                </a>
 
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
-                    <div class="h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4 text-xl">🚀</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">"RangAroma" Launch Plan</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">IMT Nagpur • Marketing</p>
-                    <p class="text-slate-600 text-sm mb-4">
-                        Developed a GTM strategy for Elica Kitchen Chimneys. Proposed "RangAroma" product line, social media influencer campaigns, and bundled pricing models for Indian consumers.
-                    </p>
-                </div>
+                <a href="smpresentation.html" class="block group">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm group-hover:shadow-lg transition h-full">
+                        <div class="h-10 w-10 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600 mb-4 text-xl">🚁</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">FlyRite Urban Mobility</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">Services Marketing</p>
+                        <p class="text-slate-600 text-sm mb-4">
+                            GTM strategy for a premium eVTOL AirTaxi service. Includes service scripts, competitor analysis, and USP definition.
+                        </p>
+                        <span class="text-emerald-600 text-sm font-semibold">View Presentation &rarr;</span>
+                    </div>
+                </a>
 
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition">
-                    <div class="h-10 w-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 mb-4 text-xl">📄</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">TDS Refund Solution Strategy</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">CredFill Pvt. Ltd.</p>
-                    <p class="text-slate-600 text-sm mb-4">
-                        Created a marketing budget allocation plan across online/offline channels. Optimized CPC and utilized SEO to boost website reach by 8% for instant tax refund solutions.
-                    </p>
-                </div>
+                <a href="elica.html" class="block group">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm group-hover:shadow-lg transition h-full">
+                        <div class="h-10 w-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 mb-4 text-xl">🍳</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">Elica RangAroma Launch</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">Product Marketing</p>
+                        <p class="text-slate-600 text-sm mb-4">
+                            Launch strategy for Indian-centric kitchen chimneys. Includes 4Ps marketing mix, product lifecycle, and pricing models.
+                        </p>
+                        <span class="text-emerald-600 text-sm font-semibold">View Strategy &rarr;</span>
+                    </div>
+                </a>
+
+                <a href="equity_research.html" class="block group">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm group-hover:shadow-lg transition h-full">
+                        <div class="h-10 w-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4 text-xl">📊</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">UBL Equity Research</h3>
+                        <p class="text-xs text-slate-500 uppercase tracking-wide mb-3">Financial Analysis</p>
+                        <p class="text-slate-600 text-sm mb-4">
+                            Comprehensive financial breakdown of United Breweries Ltd. Includes Consolidated P&L, Balance Sheet, and Ratio Analysis.
+                        </p>
+                        <span class="text-emerald-600 text-sm font-semibold">View Report &rarr;</span>
+                    </div>
+                </a>
 
             </div>
         </div>
@@ -346,11 +328,11 @@
     <script>
         // --- CHART DATA SETUP ---
 
-        // 1. Revenue Contribution (Doughnut)
+        // 1. Revenue Contribution (Doughnut) - UPDATED TO 50.2L TOTAL
         const revenueData = {
             labels: ['K3M LLP (Current)', 'PlanetSpark', 'HappEquity'],
             datasets: [{
-                data: [1300000, 320000, 200000],
+                data: [4500000, 320000, 200000],
                 backgroundColor: [
                     '#059669', // Emerald 600 (Main)
                     '#94a3b8', // Slate 400
@@ -361,12 +343,12 @@
             }]
         };
 
-        // 2. K3M Sales Trend (Line - Simulated Ramp Up)
+        // 2. K3M Sales Trend (Line - Simulated Ramp Up) - UPDATED TO 45L
         const k3mTrendData = {
             labels: ['Sept', 'Oct', 'Nov', 'Dec'],
             datasets: [{
                 label: 'Cumulative Revenue (₹ Lakhs)',
-                data: [2.5, 5.5, 9.0, 13.0], // Simulating growth to 13L
+                data: [5.0, 15.5, 28.0, 45.0], // Simulating growth to 45L
                 borderColor: '#059669', // Emerald 600
                 backgroundColor: 'rgba(5, 150, 105, 0.1)',
                 fill: true,
@@ -447,25 +429,28 @@
         });
 
         // Render Radar Chart
-        const ctxRadar = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctxRadar, {
-            type: 'radar',
-            data: skillsData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    r: {
-                        angleLines: { color: '#e2e8f0' },
-                        grid: { color: '#e2e8f0' },
-                        pointLabels: { font: { size: 11, family: 'Inter' } },
-                        suggestedMin: 0,
-                        suggestedMax: 10
+        const canvasRadar = document.getElementById('skillsChart');
+        if (canvasRadar) {
+            const ctxRadar = canvasRadar.getContext('2d');
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: skillsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#e2e8f0' },
+                            pointLabels: { font: { size: 11, family: 'Inter' } },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
     </script>
 </body>
