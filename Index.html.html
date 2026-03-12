@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRC 67:2022 — Road Sign Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0b0e13;
+  --surf:    #111620;
+  --card:    #161c28;
+  --border:  #1f2a3c;
+  --bhi:     #2a3a52;
+  --text:    #e8edf5;
+  --muted:   #57677f;
+  --dim:     #3a4a60;
+  --accent:  #3b82f6;
+  --acc-lo:  rgba(59,130,246,.12);
+  --amber:   #f59e0b;
+  --red:     #ef4444;
+  --r:       9px;
+  --font:    'DM Sans', sans-serif;
+  --mono:    'DM Mono', monospace;
+}
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  font-size: 14px;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bhi); border-radius: 4px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surf);
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.brand-badge {
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px; font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: .4px;
+  font-family: var(--mono);
+}
+.brand-title { font-size: 14px; font-weight: 600; white-space: nowrap; }
+.brand-sub { font-size: 10px; color: var(--muted); }
+
+.search-wrap { position: relative; flex: 1; max-width: 340px; }
+.search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); width: 14px; height: 14px; pointer-events: none; }
+#searchInput {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 7px 12px 7px 32px;
+  border-radius: var(--r);
+  outline: none;
+  transition: border-color .15s;
+}
+#searchInput:focus { border-color: var(--accent); }
+#searchInput::placeholder { color: var(--muted); }
+
+/* ── SPEED BAR ── */
+#speedBar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+#speedBar::-webkit-scrollbar { display: none; }
+.sb-lbl {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .8px;
+  color: var(--muted);
+  white-space: nowrap; flex-shrink: 0;
+}
+.speed-pills { display: flex; gap: 6px; }
+
+.sp-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 12px; font-weight: 600;
+  padding: 5px 11px 5px 11px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .14s;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1px; line-height: 1.2;
+}
+.sp-btn .sp-speed { font-size: 12px; font-weight: 700; }
+.sp-btn .sp-road  { font-size: 9px; font-weight: 500; opacity: .65; }
+.sp-btn:hover { border-color: var(--accent); color: var(--text); }
+.sp-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sp-btn.active .sp-road { opacity: .85; }
+
+/* ── MAIN ── */
+main { display: flex; flex: 1; overflow: hidden; }
+
+/* ── LEFT ── */
+.left {
+  width: 285px; flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  background: var(--surf);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.left-hdr {
+  padding: 9px 14px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sign-count { font-size: 10px; font-family: var(--mono); color: var(--dim); }
+#signList { overflow-y: auto; flex: 1; padding: 6px; }
+
+.grp-lbl {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .7px; text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 8px 3px;
+}
+.sign-btn {
+  width: 100%; background: none; border: none;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 9px;
+  padding: 6px 9px; border-radius: 7px;
+  text-align: left; transition: background .1s;
+}
+.sign-btn:hover { background: var(--card); }
+.sign-btn.active { background: var(--acc-lo); }
+.sign-btn.active .s-code { color: var(--accent); border-color: rgba(59,130,246,.4); }
+.s-code {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); border: 1px solid var(--bhi);
+  border-radius: 5px; padding: 2px 6px;
+  white-space: nowrap; min-width: 38px; text-align: center;
+  flex-shrink: 0; transition: color .1s, border-color .1s;
+}
+.s-name { font-size: 12.5px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hl { color: var(--accent); font-weight: 700; }
+.no-res { padding: 20px; text-align: center; color: var(--muted); font-size: 13px; }
+
+/* ── RIGHT ── */
+.right { flex: 1; background: var(--bg); overflow-y: auto; display: flex; flex-direction: column; }
+
+.empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: var(--muted); gap: 10px;
+}
+.empty-icon {
+  width: 52px; height: 52px;
+  border: 2px dashed var(--bhi); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.empty-icon svg { width: 20px; height: 20px; }
+.empty p { font-size: 13px; }
+.empty small { font-size: 11px; }
+
+/* ── DETAIL ── */
+.detail { display: none; flex-direction: column; flex: 1; }
+.detail.on { display: flex; }
+
+.d-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 16px;
+}
+.shape-wrap { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.s-octagon { width: 44px; height: 44px; background: var(--red); clip-path: polygon(30% 0%,70% 0%,100% 30%,100% 70%,70% 100%,30% 100%,0% 70%,0% 30%); }
+.s-circle { width: 44px; height: 44px; border-radius: 50%; border: 4px solid var(--red); background: #fff; }
+.s-triangle { width: 0; height: 0; border-left: 24px solid transparent; border-right: 24px solid transparent; border-bottom: 42px solid var(--red); position: relative; }
+.s-triangle::after { content: ''; position: absolute; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 32px solid #fff; top: 8px; left: -18px; }
+.s-inv-tri { width: 0; height: 0; border-left: 24px solid transparent; border-right: 24px solid transparent; border-top: 42px solid var(--red); position: relative; }
+.s-inv-tri::after { content: ''; position: absolute; border-left: 18px solid transparent; border-right: 18px solid transparent; border-top: 32px solid #fff; top: -39px; left: -18px; }
+.s-rect { width: 44px; height: 30px; border: 3px solid var(--accent); background: #1a2e52; border-radius: 4px; }
+
+.d-meta { flex: 1; min-width: 0; }
+.d-tags { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; flex-wrap: wrap; }
+.tag { font-size: 10px; font-weight: 700; font-family: var(--mono); padding: 2px 7px; border-radius: 5px; letter-spacing: .3px; }
+.tag-code { background: var(--acc-lo); color: var(--accent); border: 1px solid rgba(59,130,246,.25); }
+.tag-cat  { background: transparent; color: var(--muted); border: 1px solid var(--bhi); }
+.d-name { font-size: 20px; font-weight: 700; line-height: 1.2; }
+
+.d-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+
+/* active speed context strip */
+.speed-strip {
+  background: var(--acc-lo);
+  border: 1px solid rgba(59,130,246,.2);
+  border-radius: var(--r);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.speed-strip .ss-v {
+  font-size: 15px; font-weight: 700; color: var(--accent); white-space: nowrap;
+}
+.speed-strip .ss-r { font-size: 11px; color: #93c5fd; }
+.speed-strip .ss-hint { margin-left: auto; font-size: 10px; color: var(--dim); font-style: italic; white-space: nowrap; }
+
+/* result grid */
+.res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 12px 14px; }
+.tile.wide { grid-column: span 2; }
+.tile.hi { border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.07); }
+.tile-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); margin-bottom: 5px; }
+.tile-val { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.tile-val.blue { color: #93c5fd; font-size: 17px; }
+.tile-val.amber { color: var(--amber); }
+.tile-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* note */
+.note {
+  background: rgba(245,158,11,.05);
+  border: 1px solid rgba(245,158,11,.2);
+  border-radius: var(--r);
+  padding: 11px 14px;
+  display: flex; gap: 9px; align-items: flex-start;
+}
+.note svg { width: 13px; height: 13px; color: var(--amber); flex-shrink: 0; margin-top: 2px; }
+.note-text { font-size: 11.5px; color: #fcd34d; line-height: 1.55; }
+.note-text strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: var(--amber); margin-bottom: 2px; }
+
+@media (max-width: 640px) {
+  .left { width: 220px; }
+  .d-name { font-size: 16px; }
+  .res-grid { grid-template-columns: 1fr; }
+  .tile.wide { grid-column: span 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <div class="brand-badge">IRC 67:2022</div>
+    <div>
+      <div class="brand-title">Road Sign Assistant</div>
+      <div class="brand-sub">Code of Practice for Road Signs — India</div>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    <input id="searchInput" type="text" placeholder="Search sign name or code…" autocomplete="off" spellcheck="false">
+  </div>
+</header>
+
+<!-- SPEED BAR -->
+<div id="speedBar">
+  <div class="sb-lbl">Design Speed</div>
+  <div class="speed-pills" id="speedPills"></div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <div class="left">
+    <div class="left-hdr">
+      All Signs
+      <span class="sign-count" id="signCount"></span>
+    </div>
+    <div id="signList"></div>
+  </div>
+
+  <div class="right">
+
+    <div class="empty" id="emptyState">
+      <div class="empty-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+      </div>
+      <p>Pick a speed above, then select a sign</p>
+      <small>All dimensions update automatically</small>
+    </div>
+
+    <div class="detail" id="detailPane">
+
+      <div class="d-header">
+        <div class="shape-wrap" id="shapeWrap"></div>
+        <div class="d-meta">
+          <div class="d-tags">
+            <span class="tag tag-code" id="dCode"></span>
+            <span class="tag tag-cat"  id="dCat"></span>
+          </div>
+          <div class="d-name" id="dName"></div>
+        </div>
+      </div>
+
+      <div class="d-body">
+
+        <!-- Active speed strip -->
+        <div class="speed-strip">
+          <div>
+            <div class="ss-v" id="ssSpeed">—</div>
+            <div class="ss-r" id="ssRoad">—</div>
+          </div>
+          <div class="ss-hint">← Change speed in the bar above</div>
+        </div>
+
+        <!-- Result grid -->
+        <div class="res-grid">
+
+          <div class="tile hi">
+            <div class="tile-lbl">Board Size</div>
+            <div class="tile-val blue" id="rSize">—</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-lbl">Shape</div>
+            <div class="tile-val" id="rShape">—</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-lbl">Border / Stroke Width</div>
+            <div class="tile-val" id="rBorder">—</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-lbl">Siting Distance</div>
+            <div class="tile-val" id="rSiting">—</div>
+          </div>
+
+          <div class="tile wide" id="infoTile" style="display:none">
+            <div class="tile-lbl">Letter x-height (Informatory Boards)</div>
+            <div class="tile-val" id="rLetterHt">—</div>
+            <div class="tile-sub">Lower case / Upper case — board width scales to fit text</div>
+          </div>
+
+          <div class="tile wide">
+            <div class="tile-lbl">Retro-Reflective Sheeting — Table 6.1</div>
+            <div class="tile-val amber" id="rSheeting">—</div>
+            <div class="tile-sub" id="rRoad">—</div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+          <div class="note-text">
+            <strong>IRC 67:2022 Mandate</strong>
+            Dimensions per Table 8.1 / Table 9.1. Sheeting: IS:15809. Substrate: 1.5–2 mm Al or 3–4 mm ACM. Class C: 10-yr warranty · Class B: 7 yr · Class A: 5 yr. Ground-mounted bottom edge: 2–2.5 m above crown. Overhead clearance: ≥ 5.5 m.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+// ── SPEED TIERS ──────────────────────────────────────────────
+const SPEEDS = [
+  { val:50,  label:"≤ 50 km/h",    road:"Village Roads (VR) / Local" },
+  { val:65,  label:"51–65 km/h",   road:"City Arterial / ODR" },
+  { val:80,  label:"66–80 km/h",   road:"MDR / State Highways (SH)" },
+  { val:100, label:"81–100 km/h",  road:"National Highways (NH)" },
+  { val:120, label:"101–120 km/h", road:"High-Speed NH" },
+  { val:130, label:"> 120 km/h",   road:"Expressways" },
+];
+
+// ── DATABASE ─────────────────────────────────────────────────
+const DB = [
+  // Mandatory
+  {g:"Mandatory / Regulatory",  code:"R-1",  name:"Stop",                                 type:"stop"},
+  {g:"Mandatory / Regulatory",  code:"R-2",  name:"Give Way",                             type:"giveway"},
+  {g:"Mandatory / Regulatory",  code:"R-3",  name:"No Entry / Straight Prohibited",       type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-4",  name:"One Way (Prohibitory)",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-5",  name:"Vehicles Prohibited Both Directions",  type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-6",  name:"Right Turn Prohibited",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-7",  name:"Left Turn Prohibited",                 type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-8",  name:"U-Turn Prohibited",                    type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-9",  name:"Overtaking Prohibited",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-10", name:"Horn Prohibited",                      type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-11", name:"No Parking",                           type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-12", name:"No Stopping or Standing",              type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-13", name:"Maximum Speed Limit",                  type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-14", name:"Width Limit",                          type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-15", name:"Height Limit",                         type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-16", name:"Length Limit",                         type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-17", name:"Axle Load Limit",                      type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-18", name:"Compulsory Keep Left",                 type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-19", name:"Compulsory Ahead Only",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-20", name:"Compulsory Turn Right",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-21", name:"Compulsory Turn Left",                 type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-22", name:"Compulsory Ahead or Turn Right",       type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-23", name:"Compulsory Ahead or Turn Left",        type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-24", name:"Compulsory Keep Right",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-25", name:"Compulsory Cycle Track",               type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-26", name:"Compulsory Sound Horn",                type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-27", name:"Pedestrians Only",                     type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-28", name:"Restriction Ends",                     type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-29", name:"Trucks Prohibited",                    type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-30", name:"Motor Vehicles Prohibited",            type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-31", name:"Tractor Prohibited",                   type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-32", name:"Cycle Rickshaw Prohibited",            type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-33", name:"Bicycle Prohibited",                   type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-34", name:"Pedestrians Prohibited",               type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-35", name:"Animal Drawn Vehicle Prohibited",      type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-36", name:"Hand Cart Prohibited",                 type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-37", name:"Bullock Carts Prohibited",             type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-38", name:"Buses Prohibited",                     type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-39", name:"Two Wheelers Prohibited",              type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-40", name:"Cars Prohibited",                      type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-41", name:"Auto Rickshaw Prohibited",             type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-42", name:"Construction Vehicles Prohibited",     type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-43", name:"Articulated Vehicles Prohibited",      type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-44", name:"Free Left Prohibited at Signal",       type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-45", name:"Right Turn and U-Turn Prohibited",     type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-46", name:"Priority to Opposite Direction",       type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-47", name:"Minimum Speed Limit",                  type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-48", name:"Pass Either Side",                     type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-49", name:"Buses Only / Busway",                  type:"mandatory"},
+  {g:"Mandatory / Regulatory",  code:"R-50", name:"Stop for Police Check",                type:"mandatory"},
+  // Cautionary
+  {g:"Cautionary / Warning",    code:"C-1",  name:"Right Hair Pin Bend",                  type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-2",  name:"Left Hair Pin Bend",                   type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-3",  name:"Right Reverse Bend",                   type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-4",  name:"Left Reverse Bend",                    type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-5",  name:"Right Hand Curve",                     type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-6",  name:"Left Hand Curve",                      type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-7",  name:"Series of Bends",                      type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-8",  name:"Steep Ascent",                         type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-9",  name:"Steep Descent",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-10", name:"Narrow Road Ahead",                    type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-11", name:"Narrow Bridge Ahead",                  type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-12", name:"Cross Road",                           type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-13", name:"Y-Intersection",                       type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-14", name:"Side Road",                            type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-15", name:"T-Intersection",                       type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-16", name:"Roundabout Ahead",                     type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-17", name:"Staggered Intersection",               type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-18", name:"Major Road Ahead",                     type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-19", name:"Merging Traffic Ahead",                type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-20", name:"Dangerous Dip",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-21", name:"Hump or Rough Road",                   type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-22", name:"Barrier Ahead",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-23", name:"Falling Rocks",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-24", name:"Cattle Crossing",                      type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-25", name:"Wild Animal Crossing",                 type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-26", name:"Pedestrian Crossing",                  type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-27", name:"School Ahead",                         type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-28", name:"Men at Work",                          type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-29", name:"Slippery Road",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-30", name:"Loose Gravel",                         type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-31", name:"Cross Winds",                          type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-32", name:"Low Flying Aircraft / Runway",         type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-33", name:"Tunnel Ahead",                         type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-34", name:"Ferry",                                type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-35", name:"Opening Bridge",                       type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-36", name:"Quay Side or River Bank",              type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-37", name:"Overhead Cables",                      type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-38", name:"Soft Verge",                           type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-39", name:"Road Widens",                          type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-40", name:"Unguarded Railway Crossing",           type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-41", name:"Tram Crossing",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-42", name:"Guarded Railway Crossing",             type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-43", name:"Cycle Crossing Ahead",                 type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-44", name:"Differently-Abled Persons",            type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-45", name:"Queues Likely",                        type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-46", name:"Crash Prone Area Ahead",               type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-47", name:"Danger Warning",                       type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-48", name:"Speed Breaker Ahead",                  type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-49", name:"Rumble Strip Ahead",                   type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-50", name:"Playground Ahead",                     type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-51", name:"Reduced Carriageway",                  type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-52", name:"Lane Closure Ahead",                   type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-53", name:"Two-Way Traffic Ahead",                type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-54", name:"Gap in Median Ahead",                  type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-55", name:"270 Degree Loop",                      type:"cautionary"},
+  {g:"Cautionary / Warning",    code:"C-56", name:"U-Turn Ahead",                         type:"cautionary"},
+  // Informatory
+  {g:"Informatory / Guide",     code:"I-1",  name:"Advance Direction Sign (Stack)",       type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-2",  name:"Advance Direction Sign (Map)",         type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-3",  name:"Destination Sign",                     type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-4",  name:"NH Route Marker",                      type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-5",  name:"SH Route Marker",                      type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-6",  name:"Place Identification",                 type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-7",  name:"Route Confirmatory / Reassurance",     type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-8",  name:"Truck Lay-by",                         type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-9",  name:"Toll Booth Ahead",                     type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-10", name:"Weigh Bridge Ahead",                   type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-11", name:"Petrol Pump / Filling Station",        type:"facility"},
+  {g:"Informatory / Guide",     code:"I-12", name:"Hospital",                             type:"facility"},
+  {g:"Informatory / Guide",     code:"I-13", name:"First Aid Post",                       type:"facility"},
+  {g:"Informatory / Guide",     code:"I-14", name:"Eating Place",                         type:"facility"},
+  {g:"Informatory / Guide",     code:"I-15", name:"Light Refreshment",                    type:"facility"},
+  {g:"Informatory / Guide",     code:"I-16", name:"Resting Place",                        type:"facility"},
+  {g:"Informatory / Guide",     code:"I-17", name:"Parking",                              type:"facility"},
+  {g:"Informatory / Guide",     code:"I-18", name:"Parking for Disabled",                 type:"facility"},
+  {g:"Informatory / Guide",     code:"I-19", name:"Bus Stop",                             type:"facility"},
+  {g:"Informatory / Guide",     code:"I-20", name:"Taxi Stand",                           type:"facility"},
+  {g:"Informatory / Guide",     code:"I-21", name:"Auto Rickshaw Stand",                  type:"facility"},
+  {g:"Informatory / Guide",     code:"I-22", name:"Cycle Stand",                          type:"facility"},
+  {g:"Informatory / Guide",     code:"I-23", name:"Railway Station",                      type:"facility"},
+  {g:"Informatory / Guide",     code:"I-24", name:"Metro Station",                        type:"facility"},
+  {g:"Informatory / Guide",     code:"I-25", name:"Pedestrian Subway / FOB",              type:"facility"},
+  {g:"Informatory / Guide",     code:"I-26", name:"Toilet",                               type:"facility"},
+  {g:"Informatory / Guide",     code:"I-27", name:"Repair Facilities",                    type:"facility"},
+  {g:"Informatory / Guide",     code:"I-28", name:"Police Station",                       type:"facility"},
+  {g:"Informatory / Guide",     code:"I-29", name:"No Through Road",                      type:"facility"},
+  {g:"Informatory / Guide",     code:"I-30", name:"U-Turn Facility Ahead",                type:"informatory"},
+  {g:"Informatory / Guide",     code:"I-31", name:"Emergency SOS Phone",                  type:"facility"},
+];
+
+// ── SPECS CALC ───────────────────────────────────────────────
+function getSpecs(type, spd) {
+  if (type === "stop") {
+    return {
+      size:   spd<=50 ? "750 mm" : spd<=65 ? "900 mm" : "1200 mm",
+      shape:  "Octagonal",
+      css:    "s-octagon",
+      border: spd<=50 ? "65 mm" : spd<=65 ? "75 mm" : "100 mm",
+      siting: "At or before stop line",
+      xh:     null
+    };
+  }
+  if (type === "giveway") {
+    return {
+      size:   spd<=65 ? "600 mm (side)" : spd<=80 ? "900 mm (side)" : "1200 mm (side)",
+      shape:  "Inverted Equilateral Triangle",
+      css:    "s-inv-tri",
+      border: spd<=65 ? "50 mm" : spd<=80 ? "75 mm" : "100 mm",
+      siting: "At give-way line",
+      xh:     null
+    };
+  }
+  if (type === "mandatory") {
+    let sz, bdr;
+    if      (spd<=65)  { sz="600 mm dia";  bdr="50 mm"; }
+    else if (spd<=80)  { sz="750 mm dia";  bdr="60 mm"; }
+    else if (spd<=100) { sz="900 mm dia";  bdr="75 mm"; }
+    else if (spd<=120) { sz="1200 mm dia"; bdr="100 mm"; }
+    else               { sz="1500 mm dia"; bdr="125 mm"; }
+    return { size:sz, shape:"Circular", css:"s-circle", border:bdr, siting:"At restriction point", xh:null };
+  }
+  if (type === "cautionary") {
+    let sz, bdr, sit;
+    if      (spd<=50)  { sz="600 mm (side)";  bdr="45 mm"; sit="45 m ahead of hazard"; }
+    else if (spd<=65)  { sz="750 mm (side)";  bdr="60 mm"; sit="45–110 m ahead"; }
+    else if (spd<=80)  { sz="900 mm (side)";  bdr="70 mm"; sit="110–180 m ahead"; }
+    else if (spd<=120) { sz="1200 mm (side)"; bdr="90 mm"; sit="180–245 m ahead"; }
+    else               { sz="1500 mm (side)"; bdr="110 mm";sit="245–305 m ahead"; }
+    return { size:sz, shape:"Equilateral Triangle", css:"s-triangle", border:bdr, siting:sit, xh:null };
+  }
+  // informatory / facility
+  let xh;
+  if      (spd<=50)  xh = "70 mm / 100 mm";
+  else if (spd<=65)  xh = "100 mm / 140 mm";
+  else if (spd<=80)  xh = "140 mm / 175 mm";
+  else if (spd<=100) xh = "215 mm / 300 mm";
+  else if (spd<=120) xh = "305 mm / 425 mm";
+  else               xh = "340 mm / 475 mm";
+  return { size:"Scales to text", shape:"Rectangular", css:"s-rect", border:"Per design", siting:"Per direction sign rules", xh };
+}
+
+function getSheeting(spd) {
+  if (spd<=50) return { cls:"Class A — Type I (Engineering Grade)",         road:"Village Roads (VR) / ODR",                    w:"5-year warranty" };
+  if (spd<=80) return { cls:"Class B — Type IV (High Intensity Prismatic)", road:"MDR / State Highways (SH) / Urban Arterials", w:"7-year warranty" };
+  return        { cls:"Class C — Type XI Micro-Prismatic (Mandatory)",      road:"National Highways / Expressways",             w:"10-year warranty — IS:15809" };
+}
+
+// ── STATE & DOM ───────────────────────────────────────────────
+let activeSpeed = 80;
+let current = null;
+
+const searchInput = document.getElementById('searchInput');
+const signListEl  = document.getElementById('signList');
+const signCountEl = document.getElementById('signCount');
+const emptyState  = document.getElementById('emptyState');
+const detailPane  = document.getElementById('detailPane');
+
+// ── BUILD SPEED PILLS ────────────────────────────────────────
+function buildPills() {
+  const wrap = document.getElementById('speedPills');
+  SPEEDS.forEach(sp => {
+    const b = document.createElement('button');
+    b.className = 'sp-btn' + (sp.val===activeSpeed?' active':'');
+    b.dataset.val = sp.val;
+    b.innerHTML = `<span class="sp-speed">${sp.label}</span><span class="sp-road">${sp.road}</span>`;
+    b.onclick = () => {
+      activeSpeed = sp.val;
+      document.querySelectorAll('.sp-btn').forEach(x => x.classList.toggle('active', +x.dataset.val===sp.val));
+      if (current) updateDetail();
+    };
+    wrap.appendChild(b);
+  });
+}
+
+// ── LIST ─────────────────────────────────────────────────────
+function hl(text, q) {
+  if (!q) return text;
+  return text.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'), '<span class="hl">$1</span>');
+}
+
+function renderList(q="") {
+  signListEl.innerHTML = "";
+  const lq = q.toLowerCase().trim();
+  const groups = {};
+  DB.forEach(s => {
+    if (lq && !s.name.toLowerCase().includes(lq) && !s.code.toLowerCase().includes(lq)) return;
+    if (!groups[s.g]) groups[s.g] = [];
+    groups[s.g].push(s);
+  });
+  let total = 0;
+  Object.keys(groups).forEach(gk => {
+    total += groups[gk].length;
+    const lbl = document.createElement('div');
+    lbl.className = "grp-lbl";
+    lbl.textContent = gk;
+    signListEl.appendChild(lbl);
+    groups[gk].forEach(s => {
+      const btn = document.createElement('button');
+      btn.className = "sign-btn" + (current && current.code===s.code ? " active" : "");
+      btn.innerHTML = `<span class="s-code">${hl(s.code,q)}</span><span class="s-name">${hl(s.name,q)}</span>`;
+      btn.onclick = () => { current=s; renderList(searchInput.value); updateDetail(); };
+      signListEl.appendChild(btn);
+    });
+  });
+  if (!total) {
+    const d = document.createElement('div');
+    d.className = "no-res";
+    d.textContent = `No results for "${q}"`;
+    signListEl.appendChild(d);
+  }
+  signCountEl.textContent = total + " signs";
+}
+
+// ── DETAIL ───────────────────────────────────────────────────
+function updateDetail() {
+  if (!current) return;
+  emptyState.style.display = "none";
+  detailPane.classList.add("on");
+
+  const sp   = SPEEDS.find(s => s.val===activeSpeed);
+  const spec = getSpecs(current.type, activeSpeed);
+  const sh   = getSheeting(activeSpeed);
+
+  document.getElementById('dCode').textContent  = current.code;
+  document.getElementById('dCat').textContent   = current.g;
+  document.getElementById('dName').textContent  = current.name;
+  document.getElementById('shapeWrap').innerHTML = `<div class="${spec.css}"></div>`;
+
+  document.getElementById('ssSpeed').textContent = sp.label;
+  document.getElementById('ssRoad').textContent  = sp.road;
+
+  document.getElementById('rSize').textContent   = spec.size;
+  document.getElementById('rShape').textContent  = spec.shape;
+  document.getElementById('rBorder').textContent = spec.border;
+  document.getElementById('rSiting').textContent = spec.siting;
+
+  const infoTile = document.getElementById('infoTile');
+  if (spec.xh) {
+    infoTile.style.display = "";
+    document.getElementById('rLetterHt').textContent = spec.xh;
+  } else {
+    infoTile.style.display = "none";
+  }
+
+  document.getElementById('rSheeting').textContent = sh.cls;
+  document.getElementById('rRoad').textContent = sh.road + " · " + sh.w;
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+buildPills();
+searchInput.addEventListener('input', e => renderList(e.target.value));
+renderList();
+</script>
+</body>
+</html>
